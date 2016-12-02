@@ -189,7 +189,7 @@ void ofApp::onNew(ofxInterface::TouchEvent &event)
 {
 	editor.setText("");
 	editor.setTitle("Cling OF Playground");
-//	cof.interp->DumpIncludePath()
+	lastFile="";
 }
 
 void ofApp::onLoad(ofxInterface::TouchEvent &event)

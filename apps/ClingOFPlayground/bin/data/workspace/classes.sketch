@@ -1,0 +1,16 @@
+#include "workspace/clingof.hpp"
+
+class TestClass {
+public:
+  TestClass() {
+    ofLogNotice("TestClass") << "Constructor";
+  }
+  ~TestClass() {
+    ofLogNotice("TestClass") << "Destructor";
+  }
+}
+
+TestClass tc;
+
+
+
