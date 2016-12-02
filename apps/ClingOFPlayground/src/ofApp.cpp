@@ -1,7 +1,7 @@
 #include "ofApp.h"
 #include "../bin/data/workspace/clingof.hpp"
 
-#define CLING_PATH "/Users/gal/projects/OF/external_addons/cling2"
+#define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
 #define OF_PATH "/Users/gal/projects/cling/ClingOFPlayground/openFrameworks"
 #define HOST_PATH "/Users/gal/projects/cling/ClingOFPlayground/apps/ClingOFPlayground/src"
  //--------------------------------------------------------------
@@ -72,11 +72,13 @@ void ofApp::setupCling()
 	int argc=1;
 	char* argv[10];
 	argv[0] = (char*)malloc(1024);
-	sprintf(argv[0], "clingOFPlayground");
+	sprintf(argv[0], "ClingOFPlayground");
 
-	const char* LLVMRESDIR = "/Users/gal/projects/OF/external_addons/cling2"; //path to llvm resource directory
+	const char* LLVMRESDIR = CLING_PATH; //path to llvm resource directory
 
 	cof.interp = new cling::Interpreter(argc, argv, LLVMRESDIR);
+
+	cof.interp->DumpIncludePath();
 
 	vector<string> includePaths;
 	includePaths.push_back("libs/openFrameworks");
@@ -105,6 +107,10 @@ void ofApp::setupCling()
 	includePaths.push_back("libs/glut/include");
 	includePaths.push_back("libs/poco/include");
 	includePaths.push_back("libs/glew/include");
+	includePaths.push_back("libs/glm/include");
+	includePaths.push_back("libs/utf8/include");
+	includePaths.push_back("libs/json/include");
+	includePaths.push_back("libs/pugixml/include");
 
 	stringstream finalIncludeString;
 	for (string& path: includePaths) {

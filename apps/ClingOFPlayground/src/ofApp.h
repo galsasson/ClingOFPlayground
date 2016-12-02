@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "cling/Interpreter/Interpreter.h"
-#include "Poco/File.h"
 #include "ofxInterfaceEditor.h"
 
 class ofApp: public ofBaseApp{

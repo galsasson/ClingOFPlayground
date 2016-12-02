@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04A1B67F72E78C3C50C5D496 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */; };
 		172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3A653A647A4568CB0DBCE3B /* ofxOscMessage.cpp */; };
+		2AACCFEC1DF1D8E7008B00D6 /* ofxJSON.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */; };
 		2AAFAAD71DEF2D9300B35493 /* BitmapTextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */; };
 		2AAFAAD81DEF2D9300B35493 /* LambdaView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA201DEF2D9300B35493 /* LambdaView.cpp */; };
 		2AAFAAD91DEF2D9300B35493 /* SolidColorPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA221DEF2D9300B35493 /* SolidColorPanel.cpp */; };
@@ -19,7 +20,6 @@
 		2AAFAADE1DEF2D9300B35493 /* VirtualTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA2D1DEF2D9300B35493 /* VirtualTouch.cpp */; };
 		2AAFAAE31DEF2D9300B35493 /* ofxInterfaceEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA4D1DEF2D9300B35493 /* ofxInterfaceEditor.cpp */; };
 		2AAFAAF01DEF2D9300B35493 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA7D1DEF2D9300B35493 /* jsoncpp.cpp */; };
-		2AAFAAF21DEF2D9300B35493 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA811DEF2D9300B35493 /* ofxJSONElement.cpp */; };
 		2AAFAAF31DEF2D9300B35493 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA851DEF2D9300B35493 /* README.md */; };
 		2AAFAAF41DEF2D9300B35493 /* ofxJsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA871DEF2D9300B35493 /* ofxJsonParser.cpp */; };
 		2AAFAB011DEF2D9300B35493 /* nanovg.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAAC81DEF2D9300B35493 /* nanovg.c */; };
@@ -80,6 +80,7 @@
 		27C23E72677CDA8043BF53CA /* ofxOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOsc.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOsc.h; sourceTree = SOURCE_ROOT; };
 		27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../openFrameworks/addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
+		2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSON.cpp; sourceTree = "<group>"; };
 		2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapTextButton.cpp; sourceTree = "<group>"; };
 		2AAFAA1F1DEF2D9300B35493 /* BitmapTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapTextButton.h; sourceTree = "<group>"; };
 		2AAFAA201DEF2D9300B35493 /* LambdaView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LambdaView.cpp; sourceTree = "<group>"; };
@@ -103,8 +104,6 @@
 		2AAFAA7B1DEF2D9300B35493 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		2AAFAA7D1DEF2D9300B35493 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		2AAFAA801DEF2D9300B35493 /* ofxJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxJSON.h; sourceTree = "<group>"; };
-		2AAFAA811DEF2D9300B35493 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
-		2AAFAA821DEF2D9300B35493 /* ofxJSONElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
 		2AAFAA841DEF2D9300B35493 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2AAFAA851DEF2D9300B35493 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2AAFAA871DEF2D9300B35493 /* ofxJsonParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJsonParser.cpp; sourceTree = "<group>"; };
@@ -302,8 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				2AAFAA801DEF2D9300B35493 /* ofxJSON.h */,
-				2AAFAA811DEF2D9300B35493 /* ofxJSONElement.cpp */,
-				2AAFAA821DEF2D9300B35493 /* ofxJSONElement.h */,
+				2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -653,7 +651,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy default icon file into App/Resources\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy libfmod and change install directory for fmod to run\nrsync -aved ../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\";\ninstall_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n# Copy GLUT framework (must remove for AppStore submissions)\nrsync -aved ../../openFrameworks/libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n";
+			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy default icon file into App/Resources\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy libfmod and change install directory for fmod to run\nrsync -aved ../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\";\ninstall_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n# Copy GLUT framework (must remove for AppStore submissions)\n#rsync -aved ../../openFrameworks/libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n\n# Copy libcling.dylib\nrsync -aved ../../../../llvm/cling-build-release/install/lib/libcling.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -687,13 +685,13 @@
 				2AAFAAF01DEF2D9300B35493 /* jsoncpp.cpp in Sources */,
 				2AAFAAD91DEF2D9300B35493 /* SolidColorPanel.cpp in Sources */,
 				9C38248E00C38F3FE8A3CD48 /* OscTypes.cpp in Sources */,
-				2AAFAAF21DEF2D9300B35493 /* ofxJSONElement.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				2AAFAB011DEF2D9300B35493 /* nanovg.c in Sources */,
 				51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */,
 				2AAFAB021DEF2D9300B35493 /* README.md in Sources */,
+				2AACCFEC1DF1D8E7008B00D6 /* ofxJSON.cpp in Sources */,
 				2AAFAADA1DEF2D9300B35493 /* TextureButton.cpp in Sources */,
 				2AAFAAD81DEF2D9300B35493 /* LambdaView.cpp in Sources */,
 			);
@@ -832,7 +830,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					../../external_addons/cling2/lib,
+					"../../../../llvm/cling-build-release/install/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -846,7 +844,7 @@
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = ClingOFPlaygroundDebug;
-				USER_HEADER_SEARCH_PATHS = "../../external_addons/cling2/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
+				USER_HEADER_SEARCH_PATHS = "../../../../llvm/cling-build-release/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -888,7 +886,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					../../external_addons/cling2/lib,
+					"../../../../llvm/cling-build-release/install/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -902,7 +900,7 @@
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = ClingOFPlaygroundDebug;
-				USER_HEADER_SEARCH_PATHS = "../../external_addons/cling2/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
+				USER_HEADER_SEARCH_PATHS = "../../../../llvm/cling-build-release/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};

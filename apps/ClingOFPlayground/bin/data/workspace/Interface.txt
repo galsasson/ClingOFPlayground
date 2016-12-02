@@ -26,9 +26,26 @@ for (int i=0; i<100; i++) { cbutton(i); }
 vector<Node*> children = cof.scene.getChildren();
 
 ofLog();
-for (Node* n: children) { ofLog() << "Child: "<<n->getName(); }
+for (Node* n: children) { 
+  ofLog() << "Child: "<<n->getName();
+}
 
-for (Node* n: children) {  tmpBtn = dynamic_cast<BitmapTextButton*>(n); if (btb!=NULL) { delete btb; } }
+for (Node* n: children) {  
+  tmpBtn = dynamic_cast<BitmapTextButton*>(n);
+  if (tmpBtn!=NULL && tmpBtn->getName()[0]!=' ') {
+    ofLog()<<tmpBtn; 
+  }
+}
+ofLog();
+
+// delete all buttons
+for (Node* n: children) {  
+  tmpBtn = dynamic_cast<BitmapTextButton*>(n);
+  if (tmpBtn!=NULL && tmpBtn->getName()[0]!=' ') {
+    delete tmpBtn; 
+  }
+}
+
 
 Node* n = scene.getChildWithName("LOAD");
 
