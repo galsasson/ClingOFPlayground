@@ -3,12 +3,10 @@
 string typed;
 vector<string> completions;
 size_t cursor;
-cof.interp
-cursor=4;
 
 completions.clear();
-typed = "ofxNanoVG"
-
-cof.interp->codeComplete("ofxNanoVG",cursor,completions);
+typed = "cof.";
+cursor=4;
+cof.interp->codeComplete(typed,cursor,completions);
 ofLog() << "\n\nResults:";
 for (string str: completions) { ofLog() << str; }

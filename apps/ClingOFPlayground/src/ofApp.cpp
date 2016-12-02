@@ -101,12 +101,8 @@ void ofApp::setupCling()
 	includePaths.push_back("libs/cairo/include");
 	includePaths.push_back("libs/cairo/include/cairo");
 	includePaths.push_back("libs/glfw/include");
-	includePaths.push_back("libs/openssl/include");
-	includePaths.push_back("libs/utf8cpp/include");
 	includePaths.push_back("libs/fmodex/include");
-	includePaths.push_back("libs/glut/include");
 	includePaths.push_back("libs/poco/include");
-	includePaths.push_back("libs/glew/include");
 	includePaths.push_back("libs/glm/include");
 	includePaths.push_back("libs/utf8/include");
 	includePaths.push_back("libs/json/include");

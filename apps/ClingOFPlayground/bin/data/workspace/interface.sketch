@@ -1,0 +1,67 @@
+#include "workspace/clingof.hpp"
+
+using namespace ofxInterface;
+
+// create button
+BitmapTextButton* tmpBtn = new BitmapTextButton();
+tmpBtn->setup("Hello!!!");
+cof.scene.addChild(tmpBtn);
+tmpBtn->setPosition(10, 10);
+
+delete tmpBtn;
+
+tmpBtn = new BitmapTextButton();
+tmpBtn->setup("Hello again!!!");
+cof.scene.addChild(tmpBtn);
+tmpBtn->setPosition(500, 500);
+
+delete tmpBtn;
+
+auto cbutton = [] (int i) { BitmapTextButton* btn = new BitmapTextButton(); btn->setup(ofToString(i)); btn->setPosition(ofRandom(500), ofRandom(500)); cof.scene.addChild(btn); };
+cbutton(9998);
+
+
+for (int i=0; i<100; i++) { cbutton(i); }
+
+vector<Node*> children = cof.scene.getChildren();
+
+ofLog();
+for (Node* n: children) { 
+  ofLog() << "Child: "<<n->getName();
+}
+
+for (Node* n: children) {  
+  tmpBtn = dynamic_cast<BitmapTextButton*>(n);
+  if (tmpBtn!=NULL && tmpBtn->getName()[0]!=' ') {
+    ofLog()<<tmpBtn; 
+  }
+}
+ofLog();
+
+// delete all buttons
+for (Node* n: children) {  
+  tmpBtn = dynamic_cast<BitmapTextButton*>(n);
+  if (tmpBtn!=NULL && tmpBtn->getName()[0]!=' ') {
+    delete tmpBtn; 
+  }
+}
+
+
+// Make TERMINAL_MODE rotate
+using namespace ofxInterface;
+LambdaView* lv;
+lv = (LambdaView*)cof.scene.getChildWithName("  TERMINAL MODE  ");
+ofVec3f originalPos(lv->getPosition());
+ofLog() << originalPos;
+lv->setUpdateFunction( [] (float dt) {
+  float ang = ofGetFrameNum()%360;
+  ofVec3f vec(0, -40, 0);
+  lv->setPosition(originalPos+vec.getRotated(0, 0, ang));
+});
+
+// Stop it
+lv->setUpdateFunction( [] (float dt) {});
+
+
+
+
