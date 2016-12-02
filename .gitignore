@@ -33,3 +33,6 @@ xcuserdata/
 project.xcworkspace/
 *.xcuserstate
 
+# OSX
+.DS_Store
+

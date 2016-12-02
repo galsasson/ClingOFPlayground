@@ -1,6 +1,6 @@
 #include "MailBox.hpp"
 
-.L ../../../../../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/lib/osx/openFrameworks.dylib
+.L ../../../../../../openFrameworks/libs/openFrameworksCompiled/lib/osx/openFrameworks.dylib
 
 ofEasyCam cam;
 

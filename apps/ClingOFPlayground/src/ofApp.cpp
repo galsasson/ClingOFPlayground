@@ -2,8 +2,8 @@
 #include "../bin/data/workspace/clingof.hpp"
 
 #define CLING_PATH "/Users/gal/projects/OF/external_addons/cling2"
-#define OF_PATH "/Users/gal/projects/OF/of_v0.9.3_osx_release"
-#define HOST_PATH "/Users/gal/projects/OF/apps/ClingOFPlayground/src"
+#define OF_PATH "/Users/gal/projects/cling/ClingOFPlayground/openFrameworks"
+#define HOST_PATH "/Users/gal/projects/cling/ClingOFPlayground/apps/ClingOFPlayground/src"
  //--------------------------------------------------------------
 
 clingof_t cof;
