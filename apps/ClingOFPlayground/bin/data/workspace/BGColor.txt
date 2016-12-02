@@ -1,0 +1,17 @@
+#include "workspace/clingof.hpp"
+
+cof.bgColor = ofColor(0, 0, 255);
+cof.bgColor = ofColor(255, 0, 255);
+cof.bgColor = ofColor(255, 0, 0);
+cof.bgColor = ofColor(255, 255, 0);
+cof.bgColor = ofColor(0, 255, 255);
+cof.bgColor = ofColor(0, 0, 0);
+
+ofLog() << ofGetFrameNum();
+
+cof.update = [] () { cof.bgColor = ofColor(ofGetFrameNum()%255); }
+cof.update = [] () { ofSetWindowTitle(ofToString(ofGetFrameRate())); }
+cof.update = [] () {}
+
+
+

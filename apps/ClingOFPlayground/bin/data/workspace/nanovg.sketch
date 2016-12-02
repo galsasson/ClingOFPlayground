@@ -1,0 +1,30 @@
+#include "workspace/clingof.hpp"
+#include "ofxInterfaceEditor.h"
+
+function<void(void)> setconfig;
+ofxInterfaceEditor* editor;
+
+editor = (ofxInterfaceEditor*)cof.scene.getChildWithName("Cling OF Playground ( nanovg.sketch )");
+setconfig = [] () {
+  Json::Value config;
+  config["font-size"] = 26;
+  config["lines"] = 12;
+  config["width"] = 52;
+  config["border-width"] = 8;
+  config["background-color"] = "#00aa88";
+  config["font-color"] = "#550033 25%";
+  config["border-color"] = "#224488";
+  editor->setConfig(config);
+};
+
+setconfig()
+
+
+
+
+
+
+
+
+
+

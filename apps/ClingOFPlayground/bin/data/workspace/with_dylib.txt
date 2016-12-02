@@ -1,0 +1,10 @@
+#include "MailBox.hpp"
+
+.L ../../../../../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/lib/osx/openFrameworks.dylib
+
+ofEasyCam cam;
+
+
+ofDrawSphere(0);
+
+box.draw = [] () { cam.begin(); ofDrawSphere(100); cam.end(); }

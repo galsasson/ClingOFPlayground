@@ -1,0 +1,26 @@
+#include "workspace/clingof.hpp"
+
+// draw moving box
+cof.draw = [] () { ofDrawRectangle(ofGetFrameNum()%255, 0, 100, 100); };
+
+// reset
+cof.update = [] () {};
+cof.draw = [] () {};
+
+// test global val access
+float globaly = 100;
+cof.draw = [] () { ofDrawRectangle(ofGetFrameNum()%255, globaly, 100, 100); };
+
+// line
+cof.draw = [] () { ofDrawLine(100, 0, 100, 100); };
+
+
+// draw circle
+float x=100;
+float y=100;
+float rad=20;
+cof.draw = [] () { ofDrawCircle(x, y, rad); };
+
+ofSetColor(255, 0, 0)
+cof.draw = [] () { ofDrawCircle(200, 200, 20); };
+

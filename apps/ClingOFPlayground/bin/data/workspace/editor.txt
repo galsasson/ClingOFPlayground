@@ -1,0 +1,31 @@
+#include "clingof.hpp"
+
+cof.scene.getChildWithName("a")
+
+// make sure the name matches the title name
+cof.scene.getChildWithName("Cling OF Playground ( editor.txt )")->setScale(0.5, 0.5, 1);
+
+ofxInterface::Node *n = cof.scene.getChildWithName("Cling OF Playground ( editor.txt )")
+n->setScale(1,1,1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

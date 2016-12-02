@@ -1,0 +1,43 @@
+#include "workspace/clingof.hpp"
+
+ofEasyCam cam;
+ofSpherePrimitive sphere;
+
+sphere = ofSpherePrimitive(100, 6);
+
+ofRectangle viewport(0,0,ofGetWidth(),0.5*ofGetHeight());
+
+cof.draw = []() {
+    cam.begin(viewport);
+    sphere.drawWireframe();
+    cam.end();
+}
+
+// line of spheres
+sphere = ofSpherePrimitive(30, 6);
+cof.draw = []() {
+    cam.begin(viewport);
+    for (float x=-180; x<181; x+=60) { 
+        ofPushMatrix();
+        ofTranslate(x, 0, 0);
+        sphere.drawWireframe();
+        ofPopMatrix();
+    } 
+    cam.end();
+}
+
+// cube of spheres
+sphere = ofSpherePrimitive(15, 4);
+cof.draw = []() {
+  cam.begin(viewport);
+  for (float x=-180; x<181; x+=60) 
+    for (float y=-180; y<181; y+=60)
+      for (float z=-180; z<181; z+=60) { 
+        ofPushMatrix(); 
+        ofTranslate(x, y, z); 
+        sphere.drawWireframe(); 
+        ofPopMatrix();
+      } 
+  cam.end();
+}
+
