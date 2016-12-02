@@ -1,0 +1,18 @@
+[submodule "openFrameworks"]
+	path = openFrameworks
+	url = git@github.com:openFrameworks/openFrameworks.git
+[submodule "external_addons/ofxJSON"]
+	path = external_addons/ofxJSON
+	url = git@github.com:local-projects/ofxJSON.git
+[submodule "external_addons/ofxNanoVG"]
+	path = external_addons/ofxNanoVG
+	url = git@github.com:galsasson/ofxNanoVG.git
+[submodule "external_addons/ofxInterface"]
+	path = external_addons/ofxInterface
+	url = git@github.com:galsasson/ofxInterface.git
+[submodule "external_addons/ofxInterfaceEditor"]
+	path = external_addons/ofxInterfaceEditor
+	url = git@github.com:galsasson/ofxInterfaceEditor.git
+[submodule "external_addons/ofxJsonHelper"]
+	path = external_addons/ofxJsonHelper
+	url = git@github.com:galsasson/ofxJsonHelper.git
