@@ -1,7 +1,11 @@
 #include "ofApp.h"
 #include "../bin/data/workspace/clingof.hpp"
 
-#define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
+#ifdef DEBUG
+  #define CLING_PATH "/Users/gal/projects/llvm/cling-build/install"
+#else
+  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
+#endif
 #define OF_PATH "/Users/gal/projects/cling/ClingOFPlayground/openFrameworks"
 #define HOST_PATH "/Users/gal/projects/cling/ClingOFPlayground/apps/ClingOFPlayground/src"
  //--------------------------------------------------------------
@@ -53,7 +57,7 @@ void ofApp::setup(){
 	editor.setConfig(config);
 	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+20);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
-
+	ofAddListener(editor.eventTabDown, this, &ofApp::onTabHit);
 
 	cof.scene.setSize(ofGetWidth(), ofGetHeight());
 	cof.scene.addChild(&editor);
@@ -180,6 +184,34 @@ void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
 		}
 	}
 }
+
+void ofApp::onTabHit(ofxInterfaceEditor::EventArgs &args)
+{
+	string text = editor.getText();
+	if (text.empty()) {
+		return;
+	}
+
+	size_t pos = editor.getCaretPos();
+	if (text[pos-1] == ' ' ||
+		text[pos-1] == '\n') {
+		return;
+	}
+
+	try {
+		vector<string> completions;
+		cof.interp->codeComplete(text, pos, completions);
+		ofLog() << "\n\n\nCompletions:";
+		for (string& str: completions) {
+			ofLog() << "- "<<str;
+		}
+		args.continueNormalBehavior=false;
+	}
+	catch(exception& e) {
+		ofLogError("ofApp") << "Exception on tab: "<<text<<"\npos="<<pos<<"\nwhat?\n"<<e.what();
+	}
+}
+
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------

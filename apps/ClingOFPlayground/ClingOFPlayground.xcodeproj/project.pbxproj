@@ -808,6 +808,10 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
 				GCC_PREPROCESSOR_DEFINITIONS = NANOVG_GL2_IMPLEMENTATION;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					NANOVG_GL2_IMPLEMENTATION,
+					"DEBUG=1",
+				);
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
@@ -830,7 +834,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"../../../../llvm/cling-build-release/install/lib",
+					"../../../../llvm/cling-build/install/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -844,7 +848,7 @@
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = ClingOFPlaygroundDebug;
-				USER_HEADER_SEARCH_PATHS = "../../../../llvm/cling-build-release/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
+				USER_HEADER_SEARCH_PATHS = "../../../../llvm/cling-build/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

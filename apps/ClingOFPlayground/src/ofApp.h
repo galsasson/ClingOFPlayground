@@ -38,6 +38,7 @@ class ofApp: public ofBaseApp{
 
 	string lastFile;
 	void onEnterHit(ofxInterfaceEditor::EventArgs& args);
+	void onTabHit(ofxInterfaceEditor::EventArgs& args);
 	void onNew(TouchEvent& event);
 	void onLoad(TouchEvent& event);
 	void onSave(TouchEvent& event);
