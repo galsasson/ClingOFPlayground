@@ -54,6 +54,7 @@ void ofApp::setup(){
 	config["title-text"] = "Cling OF Playground";
 	config["font-size"] = 16;
 	config["background-color"] = "#111111 100%";
+	config["width"] = 60;
 	editor.setConfig(config);
 	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+20);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
