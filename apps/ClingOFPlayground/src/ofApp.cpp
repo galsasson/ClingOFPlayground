@@ -145,7 +145,7 @@ void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
 	if (ofGetKeyPressed(OF_KEY_SHIFT)) {
 		string code = args.editor->getSelectedText();
 		try {
-			cof.interp->process(code);
+			cof.lastCompilationResult = cof.interp->process(code);
 			args.continueNormalBehavior=false;
 			args.editor->flashSelectedText(0.5);
 		}
@@ -170,7 +170,7 @@ void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
 						}
 					}
 					else {
-						cof.interp->process(line);
+						cof.lastCompilationResult = cof.interp->process(line);
 					}
 				}
 				catch(exception& e) {

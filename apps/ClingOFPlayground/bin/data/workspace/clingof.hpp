@@ -5,6 +5,8 @@
 class clingof_t {
 public:
 	cling::Interpreter *interp;
+	cling::Interpreter::CompilationResult lastCompilationResult;
+
 	ofxInterface::Node scene;
 	function<void(void)> update;
 	function<void(void)> draw;
@@ -13,6 +15,7 @@ public:
 
 	clingof_t() :
 	interp(NULL),
+	lastCompilationResult(cling::Interpreter::kSuccess),
 	bgColor(0, 255)
 	{
 		update = [] () {};
