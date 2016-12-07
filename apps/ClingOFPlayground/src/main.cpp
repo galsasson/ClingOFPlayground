@@ -9,7 +9,7 @@ struct hostapp_t {
 
 //========================================================================
 int main(int argc, char** argv){
-	ofSetupOpenGL(700,640,OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(900,800,OF_WINDOW);			// <-------- setup the GL context
 
 //	hostapp.app = new ofApp();
 //	hostapp.app->setupCling();
