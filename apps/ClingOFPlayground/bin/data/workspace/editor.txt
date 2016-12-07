@@ -8,6 +8,14 @@ cof.scene.getChildWithName("Cling OF Playground ( editor.txt )")->setScale(0.5, 
 ofxInterface::Node *n = cof.scene.getChildWithName("Cling OF Playground ( editor.txt )")
 n->setScale(1,1,1)
 
+#include "ofxInterfaceEditor.h"
+#include "ofxJSON.h"
+ofxInterfaceEditor* editor = dynamic_cast<ofxInterfaceEditor*>(n);
+
+Json::Value config;
+config["width"] = 80;
+editor->setConfig(config);
+
 
 
 

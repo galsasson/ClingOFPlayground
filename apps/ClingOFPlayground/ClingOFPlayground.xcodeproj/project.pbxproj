@@ -903,7 +903,7 @@
 					"-lcling",
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
-				PRODUCT_NAME = ClingOFPlaygroundDebug;
+				PRODUCT_NAME = ClingOFPlayground;
 				USER_HEADER_SEARCH_PATHS = "../../../llvm/cling-build-release/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;

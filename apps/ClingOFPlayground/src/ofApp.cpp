@@ -8,6 +8,7 @@
 #endif
 #define OF_PATH "../../../../../../openFrameworks"
 #define HOST_PATH "../../../../../../apps/ClingOFPlayground/src"
+#define ADDONS_PATH "../../../../../../external_addons"
  //--------------------------------------------------------------
 
 clingof_t cof;
@@ -25,9 +26,7 @@ void ofApp::setup(){
 	cof.setup();
 
 	// setup sound
-	ofSoundStreamSettings soundSettings;
-	soundSettings.numOutputChannels = 1;
-	ofSoundStreamSetup(soundSettings);
+	ofSoundStreamSetup(1, 0);
 
 	// setup cling interpreter
 	setupCling();
@@ -130,17 +129,17 @@ void ofApp::setupCling()
 		}
 	}
 
-	cof.interp->AddIncludePath("../Frameworks");
-	cof.interp->AddIncludePaths(finalIncludeString.str());
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxInterface/src/components");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxInterface/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxNanoVG/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxNanoVG/libs/nanovg/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxNanoVG/libs/nanosvg/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxInterfaceEditor/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxJSON/src");
-	cof.interp->AddIncludePath("../../../../../../external_addons/ofxJSON/libs/jsoncpp/include");
 	cof.interp->AddIncludePath("../../../data");
+//	cof.interp->AddIncludePath("../Frameworks");
+	cof.interp->AddIncludePaths(finalIncludeString.str());
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src/components");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanovg/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanosvg/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterfaceEditor/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/libs/jsoncpp/include");
 }
 
 

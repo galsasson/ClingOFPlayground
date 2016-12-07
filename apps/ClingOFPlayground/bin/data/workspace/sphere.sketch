@@ -4,7 +4,6 @@ ofEasyCam cam;
 ofSpherePrimitive sphere;
 
 sphere = ofSpherePrimitive(100, 6);
-
 ofRectangle viewport(0,0,ofGetWidth(),0.5*ofGetHeight());
 
 cof.draw = []() {
@@ -27,7 +26,7 @@ cof.draw = []() {
 }
 
 // cube of spheres
-sphere = ofSpherePrimitive(15, 6);
+sphere = ofSpherePrimitive(15, 5);
 cof.draw = []() {
   cam.begin(viewport);
   for (float x=-180; x<181; x+=60) 
@@ -42,3 +41,16 @@ cof.draw = []() {
 }
 
 cof.draw = [] () {}
+
+cam.setFov(120);
+
+cof.update = []() {
+  cam.setFov(ofMap(sin(0.05*ofGetFrameNum()), -1, 1, 10, 180, true));
+}
+
+cam.setPosition(0, 0, -200);
+cam.lookAt(ofVec3f(0, 0, 0));
+
+
+cof.update = [] () {}
+
