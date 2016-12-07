@@ -27,7 +27,7 @@ cof.draw = []() {
 }
 
 // cube of spheres
-sphere = ofSpherePrimitive(15, 4);
+sphere = ofSpherePrimitive(15, 6);
 cof.draw = []() {
   cam.begin(viewport);
   for (float x=-180; x<181; x+=60) 
@@ -41,3 +41,4 @@ cof.draw = []() {
   cam.end();
 }
 
+cof.draw = [] () {}
