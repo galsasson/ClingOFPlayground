@@ -44,4 +44,5 @@ class ofApp: public ofBaseApp{
 	void onSave(TouchEvent& event);
 	void onSaveAs(TouchEvent& event);
 	void audioOut(float * output, int bufferSize, int nChannels);
+	void setEditorVisible(bool visible);
 };

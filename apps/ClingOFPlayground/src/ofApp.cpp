@@ -2,9 +2,9 @@
 #include "../bin/data/workspace/clingof.hpp"
 
 #ifdef DEBUG
-  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-debug/install"
+  #define CLING_PATH "../../../../../../../llvm/cling-build-debug/install"
 #else
-  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
+  #define CLING_PATH "../../../../../../../llvm/cling-build-release/install"
 #endif
 #define OF_PATH "../../../../../../openFrameworks"
 #define HOST_PATH "../../../../../../apps/ClingOFPlayground/src"
@@ -20,11 +20,19 @@ void ofApp::setup(){
 	ofSetEscapeQuitsApp(false);
 	ofSetFrameRate(60);
 	ofEnableAlphaBlending();
+
+	// set main mailbox object between cling and OF
 	cof.setup();
-	cof.audioOut = [this](float* out, int bufferSize, int nChannels){};
-	ofSoundStreamSetup(1, 0);
+
+	// setup sound
+	ofSoundStreamSettings soundSettings;
+	soundSettings.numOutputChannels = 1;
+	ofSoundStreamSetup(soundSettings);
+
+	// setup cling interpreter
 	setupCling();
 
+	// create editor
 	newBtn.setup("  NEW  ");
 	loadBtn.setup("  OPEN  ");
 	saveBtn.setup("  SAVE  ");
@@ -54,7 +62,7 @@ void ofApp::setup(){
 	config["title-text"] = "Cling OF Playground";
 	config["font-size"] = 16;
 	config["background-color"] = "#111111 100%";
-	config["width"] = 60;
+	config["width"] = 70;
 	editor.setConfig(config);
 	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+20);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
@@ -69,7 +77,7 @@ void ofApp::setup(){
 	cof.scene.addChild(&execToggle);
 	TouchManager::one().setup(&cof.scene);
 
-
+	setEditorVisible(false);
 }
 
 void ofApp::setupCling()
@@ -284,11 +292,23 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+	if (!editor.getVisible()) {
+		if (key == 'e') {
+			setEditorVisible(true);
+			editor.setPosition(ofGetMouseX(), ofGetMouseY());
+		}
+		return;
+	}
+
 	editor.keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+	if (!editor.getVisible()) {
+		return;
+	}
+
 	editor.keyReleased(key);
 }
 
@@ -346,4 +366,23 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 void ofApp::audioOut(float * output, int bufferSize, int nChannels)
 {
 	cof.audioOut(output, bufferSize, nChannels);
+}
+
+void ofApp::setEditorVisible(bool visible) {
+	if (visible) {
+		editor.activate();
+		newBtn.activate();
+		loadBtn.activate();
+		saveBtn.activate();
+		saveAsBtn.activate();
+		execToggle.activate();
+	}
+	else {
+		editor.deactivate();
+		newBtn.deactivate();
+		loadBtn.deactivate();
+		saveBtn.deactivate();
+		saveAsBtn.deactivate();
+		execToggle.deactivate();
+	}
 }
