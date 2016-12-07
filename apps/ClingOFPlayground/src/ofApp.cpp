@@ -2,12 +2,12 @@
 #include "../bin/data/workspace/clingof.hpp"
 
 #ifdef DEBUG
-  #define CLING_PATH "/Users/gal/projects/llvm/cling-build/install"
+  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-debug/install"
 #else
   #define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
 #endif
-#define OF_PATH "/Users/gal/projects/cling/ClingOFPlayground/openFrameworks"
-#define HOST_PATH "/Users/gal/projects/cling/ClingOFPlayground/apps/ClingOFPlayground/src"
+#define OF_PATH "../../../../../../openFrameworks"
+#define HOST_PATH "../../../../../../apps/ClingOFPlayground/src"
  //--------------------------------------------------------------
 
 clingof_t cof;
@@ -105,6 +105,7 @@ void ofApp::setupCling()
 	includePaths.push_back("libs/cairo/include");
 	includePaths.push_back("libs/cairo/include/cairo");
 	includePaths.push_back("libs/glfw/include");
+	includePaths.push_back("libs/glew/include");
 	includePaths.push_back("libs/fmodex/include");
 	includePaths.push_back("libs/poco/include");
 	includePaths.push_back("libs/glm/include");
