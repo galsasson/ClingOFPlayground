@@ -1,0 +1,28 @@
+#include "ofMain.h"
+
+void customDraw(ofEventArgs& args) {
+  ofSetColor(0, 255, 0);
+  ofFill();
+  ofDrawRectangle(10, 10, 100, 100);
+}
+
+ofAddListener(ofEvents().draw, &customDraw)
+ofRemoveListener(ofEvents().draw, &customDraw)
+
+
+// custom draw function with NanoVG
+#include "ofxNanoVG.h"
+
+void customDraw2(ofEventArgs& args) {
+  ofxNanoVG::one().beginFrame(ofGetWidth(), ofGetHeight(), 1);
+  ofxNanoVG::one().applyOFMatrix();
+  ofxNanoVG::one().strokeRoundedRect(10, 10, 300, 300, 20, ofColor(200), 20);
+  ofxNanoVG::one().endFrame();
+}
+
+
+ofAddListener(ofEvents().draw, &customDraw2)
+ofRemoveListener(ofEvents().draw, &customDraw2)
+
+
+
