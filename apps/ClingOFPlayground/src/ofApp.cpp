@@ -175,6 +175,10 @@ void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
 						else if (line[1]=='l' && line[2]=='s') {
 							cout<<ofSystem(line.substr(1).c_str())<<endl;
 						}
+						else if (line.substr(1, 6)=="unload") {
+							int times = atoi(line.substr(8).c_str());
+							cof.interp->unload(times);
+						}
 					}
 					else {
 						cof.lastCompilationResult = cof.interp->process(line);

@@ -6,6 +6,9 @@ void customDraw(ofEventArgs& args) {
   ofDrawRectangle(10, 10, 100, 100);
 }
 
+// this actually works but hard to manage
+.unload 1
+
 ofAddListener(ofEvents().draw, &customDraw)
 ofRemoveListener(ofEvents().draw, &customDraw)
 
@@ -30,5 +33,7 @@ void customDraw2(ofEventArgs& args) {
 ofAddListener(ofEvents().draw, &customDraw2)
 ofRemoveListener(ofEvents().draw, &customDraw2)
 
+
+.unload 1
 
 
