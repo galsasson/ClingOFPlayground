@@ -26,8 +26,6 @@ class ofApp: public ofBaseApp{
 
 	void setupCling();
 
-	cling::Transaction* trans;
-
 	ofxInterfaceEditor editor;
 	BitmapTextButton newBtn;
 	BitmapTextButton loadBtn;

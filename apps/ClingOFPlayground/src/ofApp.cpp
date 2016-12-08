@@ -36,7 +36,7 @@ void ofApp::setup(){
 	loadBtn.setup("  OPEN  ");
 	saveBtn.setup("  SAVE  ");
 	saveAsBtn.setup(" SAVE AS ");
-	newBtn.setPosition(10,	270);
+	newBtn.setPosition(10,	340);
 	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+2, newBtn.getY());
 	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+2, loadBtn.getY());
 	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+2, saveBtn.getY());
@@ -59,7 +59,7 @@ void ofApp::setup(){
 
 	Json::Value config;
 	config["title-text"] = "Cling OF Playground";
-	config["font-size"] = 16;
+	config["font-size"] = 20;
 	config["background-color"] = "#111111 100%";
 	config["width"] = 70;
 	editor.setConfig(config);
@@ -76,7 +76,7 @@ void ofApp::setup(){
 	cof.scene.addChild(&execToggle);
 	TouchManager::one().setup(&cof.scene);
 
-	setEditorVisible(false);
+	setEditorVisible(true);
 }
 
 void ofApp::setupCling()
@@ -270,7 +270,7 @@ void ofApp::onSaveAs(ofxInterface::TouchEvent &event)
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	newBtn.setPosition(editor.getX(), editor.getY()-newBtn.getHeight()-20);
+	newBtn.setPosition(editor.getX(), editor.getY()-newBtn.getHeight()-24);
 	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+2, newBtn.getY());
 	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+2, loadBtn.getY());
 	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+2, saveBtn.getY());

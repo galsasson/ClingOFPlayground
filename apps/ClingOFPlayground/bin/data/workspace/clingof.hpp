@@ -1,17 +1,19 @@
+#pragma once
+
 #include "ofMain.h"
 #include "cling/Interpreter/Interpreter.h"
 #include "ofxInterface.h"
 
 class clingof_t {
 public:
-	cling::Interpreter *interp;
-	cling::Interpreter::CompilationResult lastCompilationResult;
-
+	ofColor bgColor;
 	ofxInterface::Node scene;
 	function<void(void)> update;
 	function<void(void)> draw;
 	function<void(float*,int,int)> audioOut;
-	ofColor bgColor;
+
+	cling::Interpreter *interp;
+	cling::Interpreter::CompilationResult lastCompilationResult;
 
 	clingof_t() :
 	interp(NULL),

@@ -1,0 +1,98 @@
+#include "workspace/clingof.hpp"
+using namespace ofxInterface;
+
+
+
+
+// Create one view
+LambdaView* myView;
+myView = new LambdaView();
+
+cof.scene.addChild(myView);
+
+myView->setPosition(0.5*ofGetWidth(), 100);
+
+myView->setSize(50, 50);
+
+myView->setDrawFunction([] () {
+  ofSetColor(255, 0, 0);
+  ofFill();
+  ofDrawRectangle(0, 0, myView->getWidth(), myView->getHeight());
+});
+
+myView->setTouchDownFunction([] (TouchEvent& event) {
+  myView->setX(myView->getX()+5);
+});
+
+
+
+
+
+
+
+// Problem: we cannot create more than one view, pollute the global scope
+// Solution:
+// this must be wrapped in a function otherwise myView cannot be captured
+
+
+
+
+
+class MyViewData {
+public:
+  ofColor color;
+  float rad;
+
+  MyViewData() {
+    color = ofColor(255);
+    rad = 15;
+  }    
+}
+
+
+
+
+
+LambdaView* createMyView() {
+  LambdaView* myView = new LambdaView();
+  myView->setData(make_shared<MyViewData>());
+  myView->setDrawFunction([myView] () {
+    shared_ptr<MyViewData> data = static_pointer_cast<MyViewData>(myView->getData());
+    ofFill();
+    ofSetColor(data->color);
+    ofDrawCircle(0, 0, data->rad);
+  });
+
+  myView->setContainsFunction([myView] (const ofVec3f& global) -> bool {
+    shared_ptr<MyViewData> data = static_pointer_cast<MyViewData>(myView->getData());
+    ofVec3f local = myView->toLocal(global);
+    if (local.length() < data->rad) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+
+  myView->setTouchDownFunction([myView] (TouchEvent& event) {
+    shared_ptr<MyViewData> data = static_pointer_cast<MyViewData>(myView->getData());
+    data->color = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
+    data->rad = ofRandom(15, 30);
+  });
+
+  return myView;
+}
+
+cof.scene.addChild(createMyView());
+
+for (int i=0; i<100; i++) {
+  LambdaView* lv = createMyView();
+  lv->setPosition(ofRandom(ofGetWidth()), ofRandom(0.5*ofGetHeight()));
+  cof.scene.addChild(lv);
+}
+
+
+
+
+  
+  
