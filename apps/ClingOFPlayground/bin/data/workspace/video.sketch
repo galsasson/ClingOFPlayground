@@ -1,0 +1,25 @@
+#include "ofMain.h"
+
+
+ofVideoPlayer player;
+ofLog() << ofToDataPath("bacteria.mp4");
+player.load("bacteria.mp4");
+
+void drawVideo(ofEventArgs& args) {
+  player.update();
+  player.draw(10, 10);
+}
+ofAddListener(ofEvents().draw, &drawVideo);
+
+player.play();
+
+
+ofAVFoundationPlayer avplayer;
+avplayer.load("bacteria.mp4");
+void drawAVVideo(ofEventArgs& args) {
+  avplayer.update();
+  avplayer.draw(340, 10);
+}
+ofAddListener(ofEvents().draw, &drawAVVideo);
+
+avplayer.play();

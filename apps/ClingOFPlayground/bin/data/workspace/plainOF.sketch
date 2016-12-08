@@ -10,13 +10,19 @@ ofAddListener(ofEvents().draw, &customDraw)
 ofRemoveListener(ofEvents().draw, &customDraw)
 
 
+void customUpdate(ofEventArgs& args) {
+  ofSetWindowTitle(ofToString(ofGetFrameRate()));
+}
+ofAddListener(ofEvents().update, &customUpdate);
+
+
 // custom draw function with NanoVG
 #include "ofxNanoVG.h"
 
 void customDraw2(ofEventArgs& args) {
   ofxNanoVG::one().beginFrame(ofGetWidth(), ofGetHeight(), 1);
   ofxNanoVG::one().applyOFMatrix();
-  ofxNanoVG::one().strokeRoundedRect(10, 10, 300, 300, 20, ofColor(200), 20);
+  ofxNanoVG::one().strokeRoundedRect(30, 30, 300, 300, 20, ofColor(200), 10);
   ofxNanoVG::one().endFrame();
 }
 

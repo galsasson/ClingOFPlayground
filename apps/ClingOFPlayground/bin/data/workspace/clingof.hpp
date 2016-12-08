@@ -45,6 +45,8 @@ public:
 		ofColor(0,0);
 		ofColor(0,0,0);
 		ofColor(0,0,0,0);
+		ofVideoPlayer player;
+		ofAVFoundationPlayer avplayer;
 		ofLog();
 	}
 
