@@ -17,6 +17,8 @@ void customUpdate(ofEventArgs& args) {
   ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
 ofAddListener(ofEvents().update, &customUpdate);
+ofRemoveListener(ofEvents().update, &customUpdate);
+ofSetWindowTitle("Play with OF live!");
 
 
 // custom draw function with NanoVG
@@ -25,7 +27,7 @@ ofAddListener(ofEvents().update, &customUpdate);
 void customDraw2(ofEventArgs& args) {
   ofxNanoVG::one().beginFrame(ofGetWidth(), ofGetHeight(), 1);
   ofxNanoVG::one().applyOFMatrix();
-  ofxNanoVG::one().strokeRoundedRect(30, 30, 300, 300, 20, ofColor(200), 10);
+  ofxNanoVG::one().strokeRoundedRect(130, 30, 100, 100, 20, ofColor(255), 4);
   ofxNanoVG::one().endFrame();
 }
 
