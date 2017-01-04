@@ -16,3 +16,6 @@
 [submodule "external_addons/ofxJsonHelper"]
 	path = external_addons/ofxJsonHelper
 	url = git@github.com:galsasson/ofxJsonHelper.git
+[submodule "external_addons/ofxCling"]
+	path = external_addons/ofxCling
+	url = git@github.com:galsasson/ofxCling.git

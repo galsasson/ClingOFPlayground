@@ -2,12 +2,12 @@
 #include "../bin/data/workspace/clingof.hpp"
 
 #ifdef DEBUG
-  #define CLING_PATH "../../../../../../../llvm/cling-build-debug/install"
+  #define CLING_PATH "../../../../../../external_addons/ofxCling"
 #else
-  #define CLING_PATH "../../../../../../../llvm/cling-build-release/install"
+  #define CLING_PATH "../../../../../../external_addons/ofxCling"
+//  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
 #endif
 #define OF_PATH "../../../../../../openFrameworks"
-#define HOST_PATH "../../../../../../apps/ClingOFPlayground/src"
 #define ADDONS_PATH "../../../../../../external_addons"
  //--------------------------------------------------------------
 
@@ -18,6 +18,8 @@ void ofApp::setup(){
 	lastFile = "";
 	ternimalMode = false;
 
+	ofAddListener(ofEvents().draw, this, &ofApp::lateDraw, 1000);
+
 	ofSetEscapeQuitsApp(false);
 	ofSetFrameRate(60);
 	ofEnableAlphaBlending();
@@ -26,10 +28,17 @@ void ofApp::setup(){
 	cof.setup();
 
 	// setup sound
-	ofSoundStreamSetup(1, 0);
+	setupSound();
+//	ofSoundStreamSetup(1, 0);
 
 	// setup cling interpreter
-	setupCling();
+	vector<string> args;
+	args.push_back("ClingOFPlayground");
+	args.push_back("-nobuiltininc");
+	args.push_back("-isysroot/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk");
+	args.push_back("-I"+ofToString(CLING_PATH)+"/include");
+	args.push_back("-I"+ofToString(CLING_PATH)+"/lib/clang/3.9.0/include");
+	setupCling(args);
 
 	// create editor
 	newBtn.setup("  NEW  ");
@@ -37,9 +46,9 @@ void ofApp::setup(){
 	saveBtn.setup("  SAVE  ");
 	saveAsBtn.setup(" SAVE AS ");
 	newBtn.setPosition(10,	340);
-	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+2, newBtn.getY());
-	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+2, loadBtn.getY());
-	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+2, saveBtn.getY());
+	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+4, newBtn.getY());
+	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+4, loadBtn.getY());
+	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+4, saveBtn.getY());
 	ofAddListener(newBtn.eventTouchDown, this, &ofApp::onNew);
 	ofAddListener(loadBtn.eventTouchDown, this, &ofApp::onLoad);
 	ofAddListener(saveBtn.eventTouchDown, this, &ofApp::onSave);
@@ -47,7 +56,7 @@ void ofApp::setup(){
 	execToggle.setName("  TERMINAL MODE  ");
 	execToggle.setDrawFunction([this](){
 		execToggle.setSize(execToggle.getName().length()*8 + 10, 20);
-		ofSetColor(ternimalMode?255:40);
+		ofSetColor(ternimalMode?255:80);
 		ofFill();
 		ofDrawRectangle(0, 0, execToggle.getWidth(), execToggle.getHeight());
 		ofSetColor(0);
@@ -61,7 +70,7 @@ void ofApp::setup(){
 	config["title-text"] = "Cling OF Playground";
 	config["font-size"] = 20;
 	config["background-color"] = "#111111 100%";
-	config["width"] = 70;
+	config["width"] = 60;
 	editor.setConfig(config);
 	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+20);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
@@ -75,20 +84,24 @@ void ofApp::setup(){
 	cof.scene.addChild(&saveAsBtn);
 	cof.scene.addChild(&execToggle);
 	TouchManager::one().setup(&cof.scene);
-
+	OF_EVENT_ORDER_BEFORE_APP;
 	setEditorVisible(true);
 }
 
-void ofApp::setupCling()
+void ofApp::setupCling(const vector<string>& args)
 {
-	int argc=1;
-	char* argv[10];
-	argv[0] = (char*)malloc(1024);
-	sprintf(argv[0], "ClingOFPlayground");
+	int argc=args.size();
+	char** argv = new char*[args.size()];
+	cout << "cling args: \"";
+	for (int i=0; i<args.size(); i++) {
+		argv[i] = new char[2048];
+		sprintf(argv[i], "%s", args[i].c_str());
+		cout<<argv[i]<<" ";
+	}
+	cout<<"\""<<endl;
+	cof.interp = new cling::Interpreter(argc, argv, CLING_PATH);
 
-	const char* LLVMRESDIR = CLING_PATH; //path to llvm resource directory
-
-	cof.interp = new cling::Interpreter(argc, argv, LLVMRESDIR);
+	delete[] argv;
 
 	cof.interp->DumpIncludePath();
 
@@ -142,6 +155,22 @@ void ofApp::setupCling()
 	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/libs/jsoncpp/include");
 }
 
+void ofApp::setupSound()
+{
+	cof.soundStream.printDeviceList();
+
+	ofSoundStreamSettings settings;
+#ifdef USE_SOUNDFLOWER
+	auto devices = cof.soundStream.getMatchingDevices("Soundflower (2ch)");
+	settings.setOutDevice(devices[0]);
+#endif
+	settings.setOutListener(this);
+	settings.sampleRate = 44100;
+	settings.numOutputChannels = 2;
+	settings.numInputChannels = 0;
+	settings.bufferSize = 512;
+	cof.soundStream.setup(settings);
+}
 
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -275,9 +304,9 @@ void ofApp::onSaveAs(ofxInterface::TouchEvent &event)
 //--------------------------------------------------------------
 void ofApp::update(){
 	newBtn.setPosition(editor.getX(), editor.getY()-newBtn.getHeight()-24);
-	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+2, newBtn.getY());
-	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+2, loadBtn.getY());
-	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+2, saveBtn.getY());
+	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+4, newBtn.getY());
+	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+4, loadBtn.getY());
+	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+4, saveBtn.getY());
 	execToggle.setPosition(editor.getX()+editor.getWidth()-execToggle.getWidth(), newBtn.getY());
 
 
@@ -288,7 +317,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofClear(cof.bgColor);
+}
+
+void ofApp::lateDraw(ofEventArgs &args)
+{
 	cof.draw();
 	cof.scene.render();
 }
@@ -361,14 +393,19 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
+void ofApp::exit(){
+	delete cof.interp;
+}
+
+//--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
 
 //--------------------------------------------------------------
-void ofApp::audioOut(float * output, int bufferSize, int nChannels)
+void ofApp::audioOut(ofSoundBuffer& buffer)
 {
-	cof.audioOut(output, bufferSize, nChannels);
+	cof.audioOut(buffer);
 }
 
 void ofApp::setEditorVisible(bool visible) {

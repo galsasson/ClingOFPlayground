@@ -9,7 +9,7 @@ cof.bgColor = ofColor(255, 255, 0);
 cof.bgColor = ofColor(0, 255, 255);
 cof.bgColor = ofColor(0, 0, 0);
 
-cof.update = [] () { cof.bgColor = ofColor(ofGetFrameNum()%255); }
+cof.update = [] () { cof.bgColor = ofColor(128+128*sin(ofGetFrameNum())); }
 cof.update = [] () { ofSetWindowTitle(ofToString(ofGetFrameRate())); }
 cof.update = [] () {}
 

@@ -1,4 +1,17 @@
+// custom draw function with NanoVG
 #include "workspace/clingof.hpp"
+#include "ofxNanoVG.h"
+
+cof.draw = []() {
+  ofClear(0);
+  ofxNanoVG::one().beginFrame(ofGetWidth(), ofGetHeight(), 1);
+  ofxNanoVG::one().applyOFMatrix();
+  ofxNanoVG::one().fillRoundedRect(120, 10, 100, 100, 20, ofColor(255, 0, 0));
+  ofxNanoVG::one().strokeRoundedRect(120, 10, 100, 100, 20, ofColor(0, 255, 0), 4);
+  ofxNanoVG::one().endFrame();
+}
+
+
 #include "ofxInterfaceEditor.h"
 
 function<void(void)> setconfig;
@@ -9,7 +22,7 @@ setconfig = [] () {
   Json::Value config;
   config["font-size"] = 26;
   config["lines"] = 12;
-  config["width"] = 52;
+  config["width"] = 40;
   config["border-width"] = 8;
   config["background-color"] = "#00aa88";
   config["font-color"] = "#550033 25%";
@@ -18,7 +31,6 @@ setconfig = [] () {
 };
 
 setconfig()
-
 
 
 

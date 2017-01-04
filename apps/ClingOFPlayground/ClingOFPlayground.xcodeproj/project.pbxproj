@@ -25,6 +25,7 @@
 		2AAFAB011DEF2D9300B35493 /* nanovg.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAAC81DEF2D9300B35493 /* nanovg.c */; };
 		2AAFAB021DEF2D9300B35493 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAACE1DEF2D9300B35493 /* README.md */; };
 		2AAFAB031DEF2D9300B35493 /* ofxNanoVG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAAD01DEF2D9300B35493 /* ofxNanoVG.cpp */; };
+		2AF169A31DFF481D00555DB3 /* ofxCling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF169A11DFF481D00555DB3 /* ofxCling.cpp */; };
 		2FD33611407580C3266D3925 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BB1A268C020202BB5F23828 /* OscReceivedElements.cpp */; };
 		44A35064D139C35523A14874 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 421391EA5EE440CC0A4D1441 /* OscOutboundPacketStream.cpp */; };
 		46CCEEF78216D36E9D5AAC05 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E666C7979E244C7F8EFB137 /* ofxOscReceiver.cpp */; };
@@ -123,6 +124,8 @@
 		2AAFAAD01DEF2D9300B35493 /* ofxNanoVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNanoVG.cpp; sourceTree = "<group>"; };
 		2AAFAAD11DEF2D9300B35493 /* ofxNanoVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNanoVG.h; sourceTree = "<group>"; };
 		2AAFAB0A1DEF415F00B35493 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = bin/data; sourceTree = "<group>"; };
+		2AF169A11DFF481D00555DB3 /* ofxCling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCling.cpp; sourceTree = "<group>"; };
+		2AF169A21DFF481D00555DB3 /* ofxCling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCling.h; sourceTree = "<group>"; };
 		2EEBDDEEA8CACA9051836C2E /* ofxOscParameterSync.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscParameterSync.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscParameterSync.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../openFrameworks/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		40CA31C413F7C55CEB119220 /* ofxOscMessage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscMessage.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscMessage.h; sourceTree = SOURCE_ROOT; };
@@ -396,6 +399,24 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2AF1631C1DFF47F000555DB3 /* ofxCling */ = {
+			isa = PBXGroup;
+			children = (
+				2AF169771DFF47F100555DB3 /* src */,
+			);
+			name = ofxCling;
+			path = ../../external_addons/ofxCling;
+			sourceTree = "<group>";
+		};
+		2AF169771DFF47F100555DB3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2AF169A11DFF481D00555DB3 /* ofxCling.cpp */,
+				2AF169A21DFF481D00555DB3 /* ofxCling.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		30CB364908817057B430D528 /* osc */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +456,7 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				2AF1631C1DFF47F000555DB3 /* ofxCling */,
 				2AAFAA061DEF2D9300B35493 /* ofxInterface */,
 				2AAFAA2F1DEF2D9300B35493 /* ofxInterfaceEditor */,
 				2AAFAA4F1DEF2D9300B35493 /* ofxJSON */,
@@ -651,7 +673,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy default icon file into App/Resources\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy libfmod and change install directory for fmod to run\nrsync -aved ../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\";\ninstall_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n# Copy GLUT framework (must remove for AppStore submissions)\n#rsync -aved ../../openFrameworks/libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n\n# Copy libcling.dylib\nrsync -aved ../../../llvm/cling-build-release/install/lib/libcling.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n";
+			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy default icon file into App/Resources\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n# Copy libfmod and change install directory for fmod to run\nrsync -aved ../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\";\ninstall_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n# Copy GLUT framework (must remove for AppStore submissions)\n#rsync -aved ../../openFrameworks/libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n\n# Copy libcling.dylib\nrsync -aved ../../external_addons/ofxCling/lib/osx/libcling.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -663,6 +685,7 @@
 				2AAFAAE31DEF2D9300B35493 /* ofxInterfaceEditor.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				2AAFAADD1DEF2D9300B35493 /* TouchManager.cpp in Sources */,
+				2AF169A31DFF481D00555DB3 /* ofxCling.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				CB727100FA02D41902B85DF3 /* ofxOscBundle.cpp in Sources */,
 				172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */,
@@ -833,8 +856,8 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
+					../../external_addons/ofxCling/lib/osx,
 					"$(inherited)",
-					"../../../llvm/cling-build-debug/install/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -848,7 +871,7 @@
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = ClingOFPlaygroundDebug;
-				USER_HEADER_SEARCH_PATHS = "../../../llvm/cling-build-debug/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
+				USER_HEADER_SEARCH_PATHS = "../../external_addons/ofxCling/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -889,8 +912,8 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
+					../../external_addons/ofxCling/lib/osx,
 					"$(inherited)",
-					"../../../llvm/cling-build-release/install/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -904,7 +927,7 @@
 				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = ClingOFPlayground;
-				USER_HEADER_SEARCH_PATHS = "../../../llvm/cling-build-release/install/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
+				USER_HEADER_SEARCH_PATHS = "../../external_addons/ofxCling/include ../../external_addons/ofxJSON/libs/jsoncpp/include ../bin/data";
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};

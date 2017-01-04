@@ -1,16 +1,24 @@
 #include "workspace/clingof.hpp"
 
-ofEasyCam cam;
-ofSpherePrimitive sphere;
+ofEasyCam cam
+ofSpherePrimitive sphere
+ofRectangle viewport
+
 
 sphere = ofSpherePrimitive(100, 6);
-ofRectangle viewport(0,0,ofGetWidth(),0.5*ofGetHeight());
+viewport = ofRectangle(0,0,ofGetWidth(),0.4*ofGetHeight());
 
 cof.draw = []() {
     cam.begin(viewport);
     sphere.drawWireframe();
     cam.end();
 }
+
+ofSetColor(255, 0, 100)
+ofSetColor(0, 255, 0)
+ofSetLineWidth(2)
+ofSetLineWidth(4)
+ofSetLineWidth(1)
 
 // line of spheres
 sphere = ofSpherePrimitive(30, 6);
@@ -40,17 +48,5 @@ cof.draw = []() {
   cam.end();
 }
 
+
 cof.draw = [] () {}
-
-cam.setFov(120);
-
-cof.update = []() {
-  cam.setFov(ofMap(sin(0.05*ofGetFrameNum()), -1, 1, 10, 180, true));
-}
-
-cam.setPosition(0, 0, -200);
-cam.lookAt(ofVec3f(0, 0, 0));
-
-
-cof.update = [] () {}
-

@@ -1,22 +1,24 @@
 #include "workspace/clingof.hpp"
 
 // silence
-cof.audioOut = [](float* output, int bufferSize, int nChannels) {};
+cof.audioOut = [](ofSoundBuffer& buff) {};
 
 // white noise
-cof.audioOut = [](float* output, int bufferSize, int nChannels) { 
-  while(bufferSize--) {
-    *output=ofRandom(-0.2,0.2);
-    output++;
+cof.audioOut = [](ofSoundBuffer& buff) { 
+  for (int i=0; i<buff.getNumFrames(); i++) {
+    // left
+    buff[i*buff.getNumChannels()] = ofRandom(-0.2,0.2);
+    // right
+    buff[i*buff.getNumChannels()+1] = ofRandom(-0.2,0.2);
   }
 };
 
-// size wave
+// sine wave
 double atime=0;
-cof.audioOut = [](float* output, int bufferSize, int nChannels) { 
-  while(bufferSize--) {
-    *output=sin(atime);
-    output++;
+cof.audioOut = [](ofSoundBuffer& buff) { 
+  for (int i=0; i<buff.getNumFrames(); i++) {
+    buff[i*buff.getNumChannels()] = sin(atime);
+    buff[i*buff.getNumChannels() + 1] = sin(atime);
     atime+=0.04;
   }
 };
@@ -32,7 +34,7 @@ struct wave_params_t wp;
 
 wp.t = 0;
 wp.nSources = 4;
-for (int i=0; i<wp.nSources; i++) {
+for (int i=0; i<32; i++) {
   wp.freq[i] = 0;
   wp.mod[i]=0;
   wp.vol[i]=0;
@@ -41,13 +43,14 @@ wp.freq[0] = 0.02; wp.mod[0] = 0.0001; wp.vol[0]=1;
 wp.freq[1] = 0.04; wp.mod[1] = 0.0004; wp.vol[1]=1;
 wp.freq[2] = 0.08; wp.mod[2] = 0.0008; wp.vol[2]=1;
 wp.freq[3] = 0.01; wp.mod[3] = 0.0001; wp.vol[3]=1;
-cof.audioOut = [](float* output, int bufferSize, int nChannels) {
-  while(bufferSize--) {
-    *output=0;
-    for (int i=0; i<wp.nSources; i++) {
-      *output+=wp.vol[i] * (sin(wp.t*wp.freq[i]) * sin(wp.t*wp.mod[i]));
+cof.audioOut = [](ofSoundBuffer& buff) { 
+  for (int i=0; i<buff.getNumFrames(); i++) {
+    buff[i*buff.getNumChannels()] = 0;
+    buff[i*buff.getNumChannels()+1] = 0;
+    for (int s=0; s<wp.nSources; s++) {
+      buff[i*buff.getNumChannels()] += wp.vol[s] * (sin(wp.t*wp.freq[s]) * sin(wp.t*wp.mod[s]));
+      buff[i*buff.getNumChannels()+1] += wp.vol[s] * (sin(wp.t*wp.freq[s]) * sin(wp.t*wp.mod[s]));
     }
-    output++;
     wp.t++;
   }
 }
@@ -58,13 +61,13 @@ wp.vol[1]=0.5;
 wp.vol[2]=0.1;
 wp.vol[3]=1;
 
-for (int i=0;i<wp.nSources;i++) {
+for (int i=5;i<wp.nSources;i++) {
   wp.vol[i]=0;
 }
 
 for (int i=5;i<wp.nSources;i++) {
-  wp.freq[i] = ofRandom(0.01, 0.1);
+  wp.freq[i] = ofRandom(0.001, 0.1);
   wp.mod[i] = ofRandom(0.0001, 0.001);
-  wp.vol[i] = 0.03;
+  wp.vol[i] += 0.03;
 }
 

@@ -10,6 +10,7 @@ class ofApp: public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+		void lateDraw(ofEventArgs& args);
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -23,8 +24,10 @@ class ofApp: public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+	void exit();
 
-	void setupCling();
+	void setupCling(const vector<string>& args);
+	void setupSound();
 
 	ofxInterfaceEditor editor;
 	BitmapTextButton newBtn;
@@ -41,6 +44,6 @@ class ofApp: public ofBaseApp{
 	void onLoad(TouchEvent& event);
 	void onSave(TouchEvent& event);
 	void onSaveAs(TouchEvent& event);
-	void audioOut(float * output, int bufferSize, int nChannels);
+	void audioOut(ofSoundBuffer& buffer);
 	void setEditorVisible(bool visible);
 };

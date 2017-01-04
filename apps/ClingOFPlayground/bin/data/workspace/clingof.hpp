@@ -6,23 +6,22 @@
 
 class clingof_t {
 public:
-	ofColor bgColor;
 	ofxInterface::Node scene;
 	function<void(void)> update;
 	function<void(void)> draw;
-	function<void(float*,int,int)> audioOut;
+	function<void(ofSoundBuffer& buffer)> audioOut;
+	ofSoundStream soundStream;
 
 	cling::Interpreter *interp;
 	cling::Interpreter::CompilationResult lastCompilationResult;
 
 	clingof_t() :
 	interp(NULL),
-	lastCompilationResult(cling::Interpreter::kSuccess),
-	bgColor(0, 255)
+	lastCompilationResult(cling::Interpreter::kSuccess)
 	{
 		update = [] () {};
 		draw = [] () {};
-		audioOut = [] (float* output,int bufferSize, int nChannels){};
+		audioOut = [] (ofSoundBuffer& buffer){};
 	}
 
 	void setup() {

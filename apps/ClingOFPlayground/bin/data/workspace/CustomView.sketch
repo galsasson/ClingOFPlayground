@@ -1,5 +1,6 @@
 #include "workspace/clingof.hpp"
 
+// Draggable square
 class CustomView : public ofxInterface::Node
 {
 public:
@@ -7,16 +8,22 @@ public:
   vector<ofVec2f> touchPoints;
 
   CustomView() {
+    setName("CustomView");
     color = ofColor(ofRandom(50, 255));
     setSize(50, 50);
     setPosition(ofRandom(ofGetWidth()), ofRandom(0.5*ofGetHeight()));
     ofAddListener(eventTouchDown, this, &CustomView::onTouchDown);
+    ofAddListener(eventTouchMove, this, &CustomView::onTouchMove);
   }
 
   void draw() {
+
+    // draw body
     ofSetColor(color);
     ofFill();
     ofDrawRectangle(0, 0, getWidth(), getHeight());
+
+    // draw touch points
     ofSetColor(0);
     for (ofVec2f& p: touchPoints) {
       ofDrawCircle(p, 3);
@@ -24,14 +31,54 @@ public:
   }
 
   void onTouchDown(ofxInterface::TouchEvent& event) {
+
+    // change to random color
     color = ofColor(ofRandom(100, 255), ofRandom(100, 255), ofRandom(100, 255));
+    // add touch point
     touchPoints.push_back(toLocal(event.position));
+  }
+  void onTouchMove(ofxInterface::TouchEvent& event) {
+    // drag
+    move(ofVec3f(event.position-event.prevPosition));
   }
 }
 
+
+
+
+// Create one view
 cof.scene.addChild(new CustomView());
 
+vector<CustomView*> views;
+views
+
+// Create a hundred views
 for (int i=0; i<100; i++) {
-  cof.scene.addChild(new CustomView());
+  CustomView* view = new CustomView();
+  views.push_back(view);
+  cof.scene.addChild(view);
 }
+
+views.size()
+
+
+// animate views
+cof.update = [](){
+  int i=0;
+  for (auto& view: views) {
+    view->move(ofVec3f(sin(i+sin(i)*0.1*ofGetFrameNum()), 0, 0));
+    i++;
+  }
+
+  ofSetWindowTitle(ofToString(ofGetFrameRate()));
+}
+
+// remove all (almost)
+for (CustomView* v: views) {
+  delete v;
+}
+views.clear();
+  
+
+
 
