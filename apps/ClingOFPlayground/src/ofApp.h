@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "cling/Interpreter/Interpreter.h"
 #include "ofxInterfaceEditor.h"
 
 class ofApp: public ofBaseApp{
@@ -26,7 +25,6 @@ class ofApp: public ofBaseApp{
 		void gotMessage(ofMessage msg);
 	void exit();
 
-	void setupCling(const vector<string>& args);
 	void setupSound();
 
 	ofxInterfaceEditor editor;

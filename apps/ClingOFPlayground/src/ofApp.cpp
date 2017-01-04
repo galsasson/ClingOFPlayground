@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "../bin/data/workspace/clingof.hpp"
+#include "ofxCling.h"
 
 #ifdef DEBUG
   #define CLING_PATH "../../../../../../external_addons/ofxCling"
@@ -24,21 +25,26 @@ void ofApp::setup(){
 	ofSetFrameRate(60);
 	ofEnableAlphaBlending();
 
-	// set main mailbox object between cling and OF
-	cof.setup();
-
 	// setup sound
 	setupSound();
-//	ofSoundStreamSetup(1, 0);
 
+	// call some functions to force linkage with these symbols
+	ofxCling::forceLinkWithSymbols();
 	// setup cling interpreter
-	vector<string> args;
-	args.push_back("ClingOFPlayground");
-	args.push_back("-nobuiltininc");
-	args.push_back("-isysroot/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk");
-	args.push_back("-I"+ofToString(CLING_PATH)+"/include");
-	args.push_back("-I"+ofToString(CLING_PATH)+"/lib/clang/3.9.0/include");
-	setupCling(args);
+	cof.interp = ofxCling::createInterpreter(OF_PATH, CLING_PATH, "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk");
+
+	// add some more include paths
+	cof.interp->AddIncludePath("../../../data");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src/components");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanovg/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanosvg/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterfaceEditor/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/src");
+	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/libs/jsoncpp/include");
+
+	cof.interp->DumpIncludePath();
 
 	// create editor
 	newBtn.setup("  NEW  ");
@@ -86,73 +92,6 @@ void ofApp::setup(){
 	TouchManager::one().setup(&cof.scene);
 	OF_EVENT_ORDER_BEFORE_APP;
 	setEditorVisible(true);
-}
-
-void ofApp::setupCling(const vector<string>& args)
-{
-	int argc=args.size();
-	char** argv = new char*[args.size()];
-	cout << "cling args: \"";
-	for (int i=0; i<args.size(); i++) {
-		argv[i] = new char[2048];
-		sprintf(argv[i], "%s", args[i].c_str());
-		cout<<argv[i]<<" ";
-	}
-	cout<<"\""<<endl;
-	cof.interp = new cling::Interpreter(argc, argv, CLING_PATH);
-
-	delete[] argv;
-
-	cof.interp->DumpIncludePath();
-
-	vector<string> includePaths;
-	includePaths.push_back("libs/openFrameworks");
-	includePaths.push_back("libs/openFrameworks/3d");
-	includePaths.push_back("libs/openFrameworks/communication");
-	includePaths.push_back("libs/openFrameworks/gl");
-	includePaths.push_back("libs/openFrameworks/math");
-	includePaths.push_back("libs/openFrameworks/sound");
-	includePaths.push_back("libs/openFrameworks/utils");
-	includePaths.push_back("libs/openFrameworks/app");
-	includePaths.push_back("libs/openFrameworks/events");
-	includePaths.push_back("libs/openFrameworks/graphics");
-	includePaths.push_back("libs/openFrameworks/types");
-	includePaths.push_back("libs/openFrameworks/video");
-	includePaths.push_back("libs/FreeImage/include");
-	includePaths.push_back("libs/freetype/include");
-	includePaths.push_back("libs/rtaudio/include");
-	includePaths.push_back("libs/boost/include");
-	includePaths.push_back("libs/tess2/include");
-	includePaths.push_back("libs/cairo/include");
-	includePaths.push_back("libs/cairo/include/cairo");
-	includePaths.push_back("libs/glfw/include");
-	includePaths.push_back("libs/glew/include");
-	includePaths.push_back("libs/fmodex/include");
-	includePaths.push_back("libs/poco/include");
-	includePaths.push_back("libs/glm/include");
-	includePaths.push_back("libs/utf8/include");
-	includePaths.push_back("libs/json/include");
-	includePaths.push_back("libs/pugixml/include");
-
-	stringstream finalIncludeString;
-	for (string& path: includePaths) {
-		finalIncludeString << OF_PATH << "/" << path;
-		if (path != includePaths[includePaths.size()-1]) {
-			finalIncludeString << ":";
-		}
-	}
-
-	cof.interp->AddIncludePath("../../../data");
-//	cof.interp->AddIncludePath("../Frameworks");
-	cof.interp->AddIncludePaths(finalIncludeString.str());
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src/components");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterface/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanovg/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxNanoVG/libs/nanosvg/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxInterfaceEditor/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/src");
-	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/libs/jsoncpp/include");
 }
 
 void ofApp::setupSound()
