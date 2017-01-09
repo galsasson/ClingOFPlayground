@@ -4,7 +4,7 @@ ClingOFPlayground lets you live code openFrameoworks.
 
 It is an [openFrameworks](http://openframeworks.cc) application that have [Cling](https://root.cern.ch/cling) embedded inside of it with an in-app text editor that lets you write and execute c++ code.
 
-[![ClingOFPlayground](https://raw.githubusercontent.com/galsasson/ClingOFPlayground/master/video.png =600x)](https://vimeo.com/198692331 "ClingOFPlayground")
+[![ClingOFPlayground](https://raw.githubusercontent.com/galsasson/ClingOFPlayground/master/video.png)](https://vimeo.com/198692331 "ClingOFPlayground")
 
 
 
