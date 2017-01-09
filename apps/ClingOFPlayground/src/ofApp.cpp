@@ -2,15 +2,12 @@
 #include "../bin/data/workspace/clingof.hpp"
 #include "ofxCling.h"
 
-#ifdef DEBUG
-  #define CLING_PATH "../../../../../../external_addons/ofxCling"
-#else
-  #define CLING_PATH "../../../../../../external_addons/ofxCling"
-//  #define CLING_PATH "/Users/gal/projects/llvm/cling-build-release/install"
-#endif
+#define OSX_SDK_PATH "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk"
+#define CLING_PATH "../../../../../../external_addons/ofxCling"
 #define OF_PATH "../../../../../../openFrameworks"
 #define ADDONS_PATH "../../../../../../external_addons"
- //--------------------------------------------------------------
+
+//--------------------------------------------------------------
 
 clingof_t cof;
 
@@ -31,7 +28,7 @@ void ofApp::setup(){
 	// call some functions to force linkage with these symbols
 	ofxCling::forceLinkWithSymbols();
 	// setup cling interpreter
-	cof.interp = ofxCling::createInterpreter(OF_PATH, CLING_PATH, "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk");
+	cof.interp = ofxCling::createInterpreter(OF_PATH, CLING_PATH, OSX_SDK_PATH);
 
 	// add some more include paths
 	cof.interp->AddIncludePath("../../../data");
