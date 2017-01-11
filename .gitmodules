@@ -10,9 +10,6 @@
 [submodule "external_addons/ofxInterface"]
 	path = external_addons/ofxInterface
 	url = git@github.com:galsasson/ofxInterface.git
-[submodule "external_addons/ofxInterfaceEditor"]
-	path = external_addons/ofxInterfaceEditor
-	url = git@github.com:galsasson/ofxInterfaceEditor.git
 [submodule "external_addons/ofxJsonHelper"]
 	path = external_addons/ofxJsonHelper
 	url = git@github.com:galsasson/ofxJsonHelper.git
