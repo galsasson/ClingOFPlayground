@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxInterfaceEditor.h"
+#include "ofxInterfaceTextEditor.h"
 
 class ofApp: public ofBaseApp{
 
@@ -27,7 +27,7 @@ class ofApp: public ofBaseApp{
 
 	void setupSound();
 
-	ofxInterfaceEditor editor;
+	ofxInterfaceTextEditor editor;
 	BitmapTextButton newBtn;
 	BitmapTextButton loadBtn;
 	BitmapTextButton saveBtn;
@@ -36,8 +36,8 @@ class ofApp: public ofBaseApp{
 	bool ternimalMode;
 
 	string lastFile;
-	void onEnterHit(ofxInterfaceEditor::EventArgs& args);
-	void onTabHit(ofxInterfaceEditor::EventArgs& args);
+	void onEnterHit(ofxInterfaceTextEditor::EventArgs& args);
+	void onTabHit(ofxInterfaceTextEditor::EventArgs& args);
 	void onNew(TouchEvent& event);
 	void onLoad(TouchEvent& event);
 	void onSave(TouchEvent& event);

@@ -10,6 +10,7 @@
 		04A1B67F72E78C3C50C5D496 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */; };
 		172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3A653A647A4568CB0DBCE3B /* ofxOscMessage.cpp */; };
 		2A12700A1E1D6FA90090989F /* ofxCling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1270081E1D6FA90090989F /* ofxCling.cpp */; };
+		2A8148FE1E26A3B700135792 /* ofxInterfaceTextEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */; };
 		2AACCFEC1DF1D8E7008B00D6 /* ofxJSON.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */; };
 		2AAFAAD71DEF2D9300B35493 /* BitmapTextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */; };
 		2AAFAAD81DEF2D9300B35493 /* LambdaView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA201DEF2D9300B35493 /* LambdaView.cpp */; };
@@ -19,7 +20,6 @@
 		2AAFAADC1DEF2D9300B35493 /* TouchEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA291DEF2D9300B35493 /* TouchEvent.cpp */; };
 		2AAFAADD1DEF2D9300B35493 /* TouchManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA2B1DEF2D9300B35493 /* TouchManager.cpp */; };
 		2AAFAADE1DEF2D9300B35493 /* VirtualTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA2D1DEF2D9300B35493 /* VirtualTouch.cpp */; };
-		2AAFAAE31DEF2D9300B35493 /* ofxInterfaceEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA4D1DEF2D9300B35493 /* ofxInterfaceEditor.cpp */; };
 		2AAFAAF01DEF2D9300B35493 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA7D1DEF2D9300B35493 /* jsoncpp.cpp */; };
 		2AAFAAF31DEF2D9300B35493 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA851DEF2D9300B35493 /* README.md */; };
 		2AAFAAF41DEF2D9300B35493 /* ofxJsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA871DEF2D9300B35493 /* ofxJsonParser.cpp */; };
@@ -83,6 +83,8 @@
 		29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		2A1270081E1D6FA90090989F /* ofxCling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCling.cpp; sourceTree = "<group>"; };
 		2A1270091E1D6FA90090989F /* ofxCling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCling.h; sourceTree = "<group>"; };
+		2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInterfaceTextEditor.cpp; sourceTree = "<group>"; };
+		2A8148FD1E26A3B700135792 /* ofxInterfaceTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInterfaceTextEditor.h; sourceTree = "<group>"; };
 		2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSON.cpp; sourceTree = "<group>"; };
 		2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapTextButton.cpp; sourceTree = "<group>"; };
 		2AAFAA1F1DEF2D9300B35493 /* BitmapTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapTextButton.h; sourceTree = "<group>"; };
@@ -101,8 +103,6 @@
 		2AAFAA2C1DEF2D9300B35493 /* TouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchManager.h; sourceTree = "<group>"; };
 		2AAFAA2D1DEF2D9300B35493 /* VirtualTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualTouch.cpp; sourceTree = "<group>"; };
 		2AAFAA2E1DEF2D9300B35493 /* VirtualTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualTouch.h; sourceTree = "<group>"; };
-		2AAFAA4D1DEF2D9300B35493 /* ofxInterfaceEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInterfaceEditor.cpp; sourceTree = "<group>"; };
-		2AAFAA4E1DEF2D9300B35493 /* ofxInterfaceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInterfaceEditor.h; sourceTree = "<group>"; };
 		2AAFAA7A1DEF2D9300B35493 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
 		2AAFAA7B1DEF2D9300B35493 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		2AAFAA7D1DEF2D9300B35493 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 		2AAFAA4C1DEF2D9300B35493 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				2AAFAA4D1DEF2D9300B35493 /* ofxInterfaceEditor.cpp */,
-				2AAFAA4E1DEF2D9300B35493 /* ofxInterfaceEditor.h */,
+				2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */,
+				2A8148FD1E26A3B700135792 /* ofxInterfaceTextEditor.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -682,13 +682,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AAFAAE31DEF2D9300B35493 /* ofxInterfaceEditor.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				2AAFAADD1DEF2D9300B35493 /* TouchManager.cpp in Sources */,
 				2A12700A1E1D6FA90090989F /* ofxCling.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				CB727100FA02D41902B85DF3 /* ofxOscBundle.cpp in Sources */,
 				172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */,
+				2A8148FE1E26A3B700135792 /* ofxInterfaceTextEditor.cpp in Sources */,
 				2AAFAB031DEF2D9300B35493 /* ofxNanoVG.cpp in Sources */,
 				2AAFAAF41DEF2D9300B35493 /* ofxJsonParser.cpp in Sources */,
 				04A1B67F72E78C3C50C5D496 /* ofxOscParameterSync.cpp in Sources */,

@@ -112,7 +112,7 @@ void ofApp::setupSound()
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------
-void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
+void ofApp::onEnterHit(ofxInterfaceTextEditor::EventArgs &args)
 {
 	if (ofGetKeyPressed(OF_KEY_SHIFT)) {
 		string code = args.editor->getSelectedText();
@@ -163,7 +163,7 @@ void ofApp::onEnterHit(ofxInterfaceEditor::EventArgs &args)
 	}
 }
 
-void ofApp::onTabHit(ofxInterfaceEditor::EventArgs &args)
+void ofApp::onTabHit(ofxInterfaceTextEditor::EventArgs &args)
 {
 	string text = editor.getText();
 	if (text.empty()) {
