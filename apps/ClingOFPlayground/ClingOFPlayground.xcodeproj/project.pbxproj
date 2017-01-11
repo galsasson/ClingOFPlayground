@@ -10,7 +10,7 @@
 		04A1B67F72E78C3C50C5D496 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */; };
 		172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3A653A647A4568CB0DBCE3B /* ofxOscMessage.cpp */; };
 		2A12700A1E1D6FA90090989F /* ofxCling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1270081E1D6FA90090989F /* ofxCling.cpp */; };
-		2A8148FE1E26A3B700135792 /* ofxInterfaceTextEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */; };
+		2A8149221E26A5EA00135792 /* ofxInterfaceTextEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A81491C1E26A5EA00135792 /* ofxInterfaceTextEditor.cpp */; };
 		2AACCFEC1DF1D8E7008B00D6 /* ofxJSON.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */; };
 		2AAFAAD71DEF2D9300B35493 /* BitmapTextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */; };
 		2AAFAAD81DEF2D9300B35493 /* LambdaView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA201DEF2D9300B35493 /* LambdaView.cpp */; };
@@ -83,8 +83,8 @@
 		29E5A84494A159405C658395 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		2A1270081E1D6FA90090989F /* ofxCling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCling.cpp; sourceTree = "<group>"; };
 		2A1270091E1D6FA90090989F /* ofxCling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCling.h; sourceTree = "<group>"; };
-		2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInterfaceTextEditor.cpp; sourceTree = "<group>"; };
-		2A8148FD1E26A3B700135792 /* ofxInterfaceTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInterfaceTextEditor.h; sourceTree = "<group>"; };
+		2A81491C1E26A5EA00135792 /* ofxInterfaceTextEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInterfaceTextEditor.cpp; sourceTree = "<group>"; };
+		2A81491D1E26A5EA00135792 /* ofxInterfaceTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInterfaceTextEditor.h; sourceTree = "<group>"; };
 		2AACCFEB1DF1D8E7008B00D6 /* ofxJSON.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSON.cpp; sourceTree = "<group>"; };
 		2AAFAA1E1DEF2D9300B35493 /* BitmapTextButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapTextButton.cpp; sourceTree = "<group>"; };
 		2AAFAA1F1DEF2D9300B35493 /* BitmapTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapTextButton.h; sourceTree = "<group>"; };
@@ -189,6 +189,24 @@
 			name = ofxXmlSettings;
 			sourceTree = "<group>";
 		};
+		2A8148FF1E26A5EA00135792 /* ofxInterfaceTextEditor */ = {
+			isa = PBXGroup;
+			children = (
+				2A81491B1E26A5EA00135792 /* src */,
+			);
+			name = ofxInterfaceTextEditor;
+			path = ../../external_addons/ofxInterfaceTextEditor;
+			sourceTree = "<group>";
+		};
+		2A81491B1E26A5EA00135792 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2A81491C1E26A5EA00135792 /* ofxInterfaceTextEditor.cpp */,
+				2A81491D1E26A5EA00135792 /* ofxInterfaceTextEditor.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		2AAFAA061DEF2D9300B35493 /* ofxInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,24 +246,6 @@
 				2AAFAA251DEF2D9300B35493 /* TextureButton.h */,
 			);
 			path = components;
-			sourceTree = "<group>";
-		};
-		2AAFAA2F1DEF2D9300B35493 /* ofxInterfaceEditor */ = {
-			isa = PBXGroup;
-			children = (
-				2AAFAA4C1DEF2D9300B35493 /* src */,
-			);
-			name = ofxInterfaceEditor;
-			path = ../../external_addons/ofxInterfaceEditor;
-			sourceTree = "<group>";
-		};
-		2AAFAA4C1DEF2D9300B35493 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				2A8148FC1E26A3B700135792 /* ofxInterfaceTextEditor.cpp */,
-				2A8148FD1E26A3B700135792 /* ofxInterfaceTextEditor.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		2AAFAA4F1DEF2D9300B35493 /* ofxJSON */ = {
@@ -456,9 +456,9 @@
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
+				2A8148FF1E26A5EA00135792 /* ofxInterfaceTextEditor */,
 				2AF1631C1DFF47F000555DB3 /* ofxCling */,
 				2AAFAA061DEF2D9300B35493 /* ofxInterface */,
-				2AAFAA2F1DEF2D9300B35493 /* ofxInterfaceEditor */,
 				2AAFAA4F1DEF2D9300B35493 /* ofxJSON */,
 				2AAFAA831DEF2D9300B35493 /* ofxJsonHelper */,
 				2AAFAA891DEF2D9300B35493 /* ofxNanoVG */,
@@ -687,8 +687,8 @@
 				2A12700A1E1D6FA90090989F /* ofxCling.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				CB727100FA02D41902B85DF3 /* ofxOscBundle.cpp in Sources */,
+				2A8149221E26A5EA00135792 /* ofxInterfaceTextEditor.cpp in Sources */,
 				172513EF0A37F0353FBED5DF /* ofxOscMessage.cpp in Sources */,
-				2A8148FE1E26A3B700135792 /* ofxInterfaceTextEditor.cpp in Sources */,
 				2AAFAB031DEF2D9300B35493 /* ofxNanoVG.cpp in Sources */,
 				2AAFAAF41DEF2D9300B35493 /* ofxJsonParser.cpp in Sources */,
 				04A1B67F72E78C3C50C5D496 /* ofxOscParameterSync.cpp in Sources */,

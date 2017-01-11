@@ -16,3 +16,6 @@
 [submodule "external_addons/ofxCling"]
 	path = external_addons/ofxCling
 	url = git@github.com:galsasson/ofxCling.git
+[submodule "external_addons/ofxInterfaceTextEditor"]
+	path = external_addons/ofxInterfaceTextEditor
+	url = git@github.com:galsasson/ofxInterfaceTextEditor.git
