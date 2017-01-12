@@ -1,0 +1,55 @@
+
+#include "ofMain.h"
+
+void customDraw(ofEventArgs& args) {
+  ofSetColor(255, 0, 0);
+  ofFill();
+  ofDrawRectangle(10, 10, 100, 100);
+}
+
+// this actually works but hard to manage
+//.unload 1
+
+// add draw function
+ofAddListener(ofEvents().draw, &customDraw)
+// remove draw function
+ofRemoveListener(ofEvents().draw, &customDraw)
+
+
+
+
+// show framerate
+void customUpdate(ofEventArgs& args) {
+  ofSetWindowTitle(ofToString(ofGetFrameRate()));
+}
+ofAddListener(ofEvents().update, &customUpdate);
+ofRemoveListener(ofEvents().update, &customUpdate);
+
+
+
+
+ofColor strokeC;
+ofColor fillC;
+
+void drawSquare(ofEventArgs& args) {
+  ofClear(0);
+  ofSetColor(fillC);
+  ofFill();
+  ofDrawRectangle(200, 50, 100, 100);
+  ofSetColor(strokeC);
+  ofNoFill();
+  ofDrawRectangle(200, 50, 100, 100);
+  ofFill();
+}
+
+ofAddListener(ofEvents().draw, &drawSquare);
+ofRemoveListener(ofEvents().draw, &drawSquare);
+
+
+
+
+void clearDraw(ofEventArgs& args) {
+  ofClear(0);
+}
+ofAddListener(ofEvents().draw, &clearDraw);
+
