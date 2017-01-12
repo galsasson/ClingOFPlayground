@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxInterfaceTextEditor.h"
+#include "LambdaViewEditor.h"
 
 class ofApp: public ofBaseApp{
 
@@ -27,17 +28,21 @@ class ofApp: public ofBaseApp{
 
 	void setupSound();
 
-	ofxInterfaceTextEditor editor;
 	BitmapTextButton newBtn;
 	BitmapTextButton loadBtn;
 	BitmapTextButton saveBtn;
 	BitmapTextButton saveAsBtn;
+	ofxInterfaceTextEditor editor;
+	LambdaViewEditor lambdaEditor;
+	LambdaView lambdaView;
 	LambdaView execToggle;
-	bool ternimalMode;
+	bool terminalMode;
 
 	string lastFile;
 	void onEnterHit(ofxInterfaceTextEditor::EventArgs& args);
-	void onTabHit(ofxInterfaceTextEditor::EventArgs& args);
+
+	void onUpdateView(LambdaViewEditor& edit);
+
 	void onNew(TouchEvent& event);
 	void onLoad(TouchEvent& event);
 	void onSave(TouchEvent& event);

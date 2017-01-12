@@ -12,9 +12,8 @@
 clingof_t cof;
 
 void ofApp::setup(){
-
 	lastFile = "";
-	ternimalMode = false;
+	terminalMode = false;
 
 	ofAddListener(ofEvents().draw, this, &ofApp::lateDraw, 1000);
 
@@ -43,7 +42,24 @@ void ofApp::setup(){
 
 	cof.interp->DumpIncludePath();
 
-	// create editor
+	// create lambda editor
+	lambdaEditor.setPosition(4, 4);
+
+	// create general code editor
+	editor.setTitle("Playground");
+	editor.setPosition(4, lambdaEditor.getY()+lambdaView.getHeight()+6);
+	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
+
+	// default lambda editor
+	lambdaView.setSize(100, 100);
+	lambdaView.setDrawFunction([this]() {
+		ofSetColor(255, 0, 0);
+		ofFill();
+		ofDrawRectangle(0, 0, lambdaView.getWidth(), lambdaView.getHeight());
+	});
+	lambdaView.setPosition(lambdaEditor.getX() + lambdaEditor.getWidth() + 10, 10);
+
+	// create load/save buttons
 	newBtn.setup("  NEW  ");
 	loadBtn.setup("  OPEN  ");
 	saveBtn.setup("  SAVE  ");
@@ -59,33 +75,25 @@ void ofApp::setup(){
 	execToggle.setName("  TERMINAL MODE  ");
 	execToggle.setDrawFunction([this](){
 		execToggle.setSize(execToggle.getName().length()*8 + 10, 20);
-		ofSetColor(ternimalMode?255:80);
+		ofSetColor(terminalMode?255:80);
 		ofFill();
 		ofDrawRectangle(0, 0, execToggle.getWidth(), execToggle.getHeight());
 		ofSetColor(0);
 		ofDrawBitmapString(execToggle.getName(), 5, execToggle.getHeight()-5);
 	});
 	execToggle.setTouchDownFunction([this](TouchEvent& event) {
-		ternimalMode = !ternimalMode;
+		terminalMode = !terminalMode;
 	});
 
-	Json::Value config;
-	config["title-text"] = "Cling OF Playground";
-	config["font-size"] = 20;
-	config["background-color"] = "#111111 100%";
-	config["width"] = 60;
-	editor.setConfig(config);
-	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+4);
-	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
-	ofAddListener(editor.eventTabDown, this, &ofApp::onTabHit);
-
 	cof.scene.setSize(ofGetWidth(), ofGetHeight());
+	cof.scene.addChild(&lambdaEditor);
 	cof.scene.addChild(&editor);
 	cof.scene.addChild(&newBtn);
 	cof.scene.addChild(&loadBtn);
 	cof.scene.addChild(&saveBtn);
 	cof.scene.addChild(&saveAsBtn);
 	cof.scene.addChild(&execToggle);
+	cof.scene.addChild(&lambdaView);
 	TouchManager::one().setup(&cof.scene);
 }
 
@@ -124,7 +132,7 @@ void ofApp::onEnterHit(ofxInterfaceTextEditor::EventArgs &args)
 		}
 	}
 	else {
-		if (ternimalMode) {
+		if (terminalMode) {
 			string line = args.editor->getLine(args.editor->getCaret().line);
 			if (line != "") {
 				try {
@@ -161,33 +169,6 @@ void ofApp::onEnterHit(ofxInterfaceTextEditor::EventArgs &args)
 	}
 }
 
-void ofApp::onTabHit(ofxInterfaceTextEditor::EventArgs &args)
-{
-	string text = editor.getText();
-	if (text.empty()) {
-		return;
-	}
-
-	size_t pos = editor.getCaretPos();
-	if (text[pos-1] == ' ' ||
-		text[pos-1] == '\n') {
-		return;
-	}
-
-	try {
-		vector<string> completions;
-		cof.interp->codeComplete(text, pos, completions);
-		ofLog() << "\n\n\nCompletions:";
-		for (string& str: completions) {
-			ofLog() << "- "<<str;
-		}
-		args.continueNormalBehavior=false;
-	}
-	catch(exception& e) {
-		ofLogError("ofApp") << "Exception on tab: "<<text<<"\npos="<<pos<<"\nwhat?\n"<<e.what();
-	}
-}
-
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -195,8 +176,8 @@ void ofApp::onTabHit(ofxInterfaceTextEditor::EventArgs &args)
 
 void ofApp::onNew(ofxInterface::TouchEvent &event)
 {
-	editor.setText("");
-	editor.setTitle("Cling OF Playground");
+//	editor.setText("");
+//	editor.setTitle("Cling OF Playground");
 	lastFile="";
 }
 
@@ -204,23 +185,23 @@ void ofApp::onLoad(ofxInterface::TouchEvent &event)
 {
 	ofFileDialogResult result = ofSystemLoadDialog("Open File", false, ofToDataPath("workspace"));
 	if (result.bSuccess) {
-		editor.loadFromFile(result.filePath);
+//		editor.loadFromFile(result.filePath);
 		lastFile = result.filePath;
-		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+//		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
 	}
 }
 
 void ofApp::onSave(ofxInterface::TouchEvent &event)
 {
 	if (lastFile != "") {
-		editor.saveToFile(lastFile);
+//		editor.saveToFile(lastFile);
 	}
 	else {
 		ofFileDialogResult result = ofSystemSaveDialog("Save to file...", "Save text to file");
 		if (result.bSuccess) {
-			editor.saveToFile(result.filePath);
+//			editor.saveToFile(result.filePath);
 			lastFile = result.filePath;
-			editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+//			editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
 		}
 	}
 }
@@ -229,9 +210,9 @@ void ofApp::onSaveAs(ofxInterface::TouchEvent &event)
 {
 	ofFileDialogResult result = ofSystemSaveDialog("Save to file...", "Save text to file");
 	if (result.bSuccess) {
-		editor.saveToFile(result.filePath);
+//		editor.saveToFile(result.filePath);
 		lastFile = result.filePath;
-		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+//		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
 	}
 }
 
@@ -242,7 +223,6 @@ void ofApp::update(){
 	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+4, loadBtn.getY());
 	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+4, saveBtn.getY());
 	execToggle.setPosition(editor.getX()+editor.getWidth()-execToggle.getWidth(), newBtn.getY());
-
 
 	cof.update();
 

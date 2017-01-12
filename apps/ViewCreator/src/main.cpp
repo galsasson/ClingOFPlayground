@@ -5,7 +5,7 @@ using namespace std;
 
 //========================================================================
 int main(int argc, char** argv){
-	ofSetupOpenGL(670,790,OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(1200,800,OF_WINDOW);			// <-------- setup the GL context
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN

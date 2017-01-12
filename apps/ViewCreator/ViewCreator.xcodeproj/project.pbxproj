@@ -24,6 +24,7 @@
 		2AAFAAF41DEF2D9300B35493 /* ofxJsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAA871DEF2D9300B35493 /* ofxJsonParser.cpp */; };
 		2AAFAB011DEF2D9300B35493 /* nanovg.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAAC81DEF2D9300B35493 /* nanovg.c */; };
 		2AAFAB031DEF2D9300B35493 /* ofxNanoVG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFAAD01DEF2D9300B35493 /* ofxNanoVG.cpp */; };
+		2AEEE8DD1E2825990039C40E /* LambdaViewEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AEEE8DB1E2825990039C40E /* LambdaViewEditor.cpp */; };
 		2FD33611407580C3266D3925 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BB1A268C020202BB5F23828 /* OscReceivedElements.cpp */; };
 		44A35064D139C35523A14874 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 421391EA5EE440CC0A4D1441 /* OscOutboundPacketStream.cpp */; };
 		46CCEEF78216D36E9D5AAC05 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E666C7979E244C7F8EFB137 /* ofxOscReceiver.cpp */; };
@@ -119,6 +120,8 @@
 		2AAFAAD01DEF2D9300B35493 /* ofxNanoVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNanoVG.cpp; sourceTree = "<group>"; };
 		2AAFAAD11DEF2D9300B35493 /* ofxNanoVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNanoVG.h; sourceTree = "<group>"; };
 		2AAFAB0A1DEF415F00B35493 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = bin/data; sourceTree = "<group>"; };
+		2AEEE8DB1E2825990039C40E /* LambdaViewEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LambdaViewEditor.cpp; sourceTree = "<group>"; };
+		2AEEE8DC1E2825990039C40E /* LambdaViewEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LambdaViewEditor.h; sourceTree = "<group>"; };
 		2EEBDDEEA8CACA9051836C2E /* ofxOscParameterSync.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscParameterSync.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscParameterSync.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../openFrameworks/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		40CA31C413F7C55CEB119220 /* ofxOscMessage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscMessage.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscMessage.h; sourceTree = SOURCE_ROOT; };
@@ -547,6 +550,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				2AEEE8DB1E2825990039C40E /* LambdaViewEditor.cpp */,
+				2AEEE8DC1E2825990039C40E /* LambdaViewEditor.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -696,6 +701,7 @@
 				2AAFAAD91DEF2D9300B35493 /* SolidColorPanel.cpp in Sources */,
 				9C38248E00C38F3FE8A3CD48 /* OscTypes.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
+				2AEEE8DD1E2825990039C40E /* LambdaViewEditor.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				2AAFAB011DEF2D9300B35493 /* nanovg.c in Sources */,
