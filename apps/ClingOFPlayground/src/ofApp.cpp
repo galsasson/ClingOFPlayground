@@ -75,7 +75,7 @@ void ofApp::setup(){
 	config["background-color"] = "#111111 100%";
 	config["width"] = 60;
 	editor.setConfig(config);
-	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+20);
+	editor.setPosition(10, saveBtn.getY()+saveBtn.getHeight()+4);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
 	ofAddListener(editor.eventTabDown, this, &ofApp::onTabHit);
 
@@ -87,8 +87,6 @@ void ofApp::setup(){
 	cof.scene.addChild(&saveAsBtn);
 	cof.scene.addChild(&execToggle);
 	TouchManager::one().setup(&cof.scene);
-	OF_EVENT_ORDER_BEFORE_APP;
-	setEditorVisible(true);
 }
 
 void ofApp::setupSound()
@@ -239,7 +237,7 @@ void ofApp::onSaveAs(ofxInterface::TouchEvent &event)
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	newBtn.setPosition(editor.getX(), editor.getY()-newBtn.getHeight()-24);
+	newBtn.setPosition(editor.getX(), editor.getY()-newBtn.getHeight()-4);
 	loadBtn.setPosition(newBtn.getX()+newBtn.getWidth()+4, newBtn.getY());
 	saveBtn.setPosition(loadBtn.getX()+loadBtn.getWidth()+4, loadBtn.getY());
 	saveAsBtn.setPosition(saveBtn.getX()+saveBtn.getWidth()+4, saveBtn.getY());
@@ -263,24 +261,16 @@ void ofApp::lateDraw(ofEventArgs &args)
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	if (!editor.getVisible()) {
-		if (key == 'e') {
-			setEditorVisible(true);
-			editor.setPosition(ofGetMouseX(), ofGetMouseY());
-		}
-		return;
+	if (ofxInterfaceTextEditor::getFocused() != NULL) {
+		ofxInterfaceTextEditor::getFocused()->keyPressed(key);
 	}
-
-	editor.keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	if (!editor.getVisible()) {
-		return;
+	if (ofxInterfaceTextEditor::getFocused() != NULL) {
+		ofxInterfaceTextEditor::getFocused()->keyReleased(key);
 	}
-
-	editor.keyReleased(key);
 }
 
 //--------------------------------------------------------------
@@ -315,7 +305,7 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::mouseScrolled(int x, int y, float h, float v){
-	editor.vscroll(x, y, v);
+	ofxInterfaceTextEditor::vscroll(x, y, v);
 }
 
 //--------------------------------------------------------------
@@ -342,23 +332,4 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 void ofApp::audioOut(ofSoundBuffer& buffer)
 {
 	cof.audioOut(buffer);
-}
-
-void ofApp::setEditorVisible(bool visible) {
-	if (visible) {
-		editor.activate();
-		newBtn.activate();
-		loadBtn.activate();
-		saveBtn.activate();
-		saveAsBtn.activate();
-		execToggle.activate();
-	}
-	else {
-		editor.deactivate();
-		newBtn.deactivate();
-		loadBtn.deactivate();
-		saveBtn.deactivate();
-		saveAsBtn.deactivate();
-		execToggle.deactivate();
-	}
 }
