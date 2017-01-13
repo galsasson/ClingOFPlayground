@@ -39,9 +39,14 @@ LambdaViewEditor::LambdaViewEditor(const string& compName)
 	// Create the lambda view that we'll be changing
 	view = new ofxInterface::LambdaView();
 	view->setName(compName);
+	view->setPosition(2*x+editors.begin()->second->getWidth(), 0);
 	addChild(view);
 
 	setSize(2*x+editors.begin()->second->getWidth(), y+30);
+
+	autoUpdate=true;
+	updateTimer=2;
+	ofAddListener(eventTouchMove, this, &LambdaViewEditor::onTouchMove);
 }
 
 string LambdaViewEditor::getFunctionCode(const string& func)
@@ -64,9 +69,20 @@ string LambdaViewEditor::getCode()
 	return code.str();
 }
 
+void LambdaViewEditor::update(float dt)
+{
+	if (autoUpdate) {
+		updateTimer-=dt;
+		if (updateTimer<=0) {
+			ofNotifyEvent(eventCompile, *this, this);
+			updateTimer=2;
+		}
+	}
+}
+
 void LambdaViewEditor::draw()
 {
-	ofSetColor(40);
+	ofSetColor(80);
 	ofFill();
 	ofDrawRectangle(0, 0, getWidth(), getHeight());
 }
@@ -85,4 +101,10 @@ Json::Value LambdaViewEditor::getEditorConfig()
 	conf["font-size"] = 16;
 	conf["draggable"] = false;
 	return conf;
+}
+
+void LambdaViewEditor::onTouchMove(ofxInterface::TouchEvent &event)
+{
+	ofVec3f m = event.position-event.prevPosition;
+	move(m);
 }

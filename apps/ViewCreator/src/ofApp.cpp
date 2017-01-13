@@ -170,17 +170,13 @@ void ofApp::onEnterHit(ofxInterfaceTextEditor::EventArgs &args)
 
 void ofApp::onUpdateView(LambdaViewEditor &edit)
 {
-//	string code = "((LambdaView*)(cof.scene.getChildWithName(\"custom_lambda_view\")))->setDrawFunction([]() { " +edit.getCode("draw")+ " });";
-//
-//	cof.interp->process(code);
-
 	cof.interp->process(edit.getCode());
 }
 
 void ofApp::onNew(ofxInterface::TouchEvent &event)
 {
-//	editor.setText("");
-//	editor.setTitle("Cling OF Playground");
+	editor.setText("");
+	editor.setTitle("View Creator");
 	lastFile="";
 }
 
@@ -188,23 +184,23 @@ void ofApp::onLoad(ofxInterface::TouchEvent &event)
 {
 	ofFileDialogResult result = ofSystemLoadDialog("Open File", false, ofToDataPath("workspace"));
 	if (result.bSuccess) {
-//		editor.loadFromFile(result.filePath);
+		editor.loadFromFile(result.filePath);
 		lastFile = result.filePath;
-//		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+		editor.setTitle("View Creator ( "+result.fileName+" )");
 	}
 }
 
 void ofApp::onSave(ofxInterface::TouchEvent &event)
 {
 	if (lastFile != "") {
-//		editor.saveToFile(lastFile);
+		editor.saveToFile(lastFile);
 	}
 	else {
 		ofFileDialogResult result = ofSystemSaveDialog("Save to file...", "Save text to file");
 		if (result.bSuccess) {
-//			editor.saveToFile(result.filePath);
+			editor.saveToFile(result.filePath);
 			lastFile = result.filePath;
-//			editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+			editor.setTitle("View Creator ( "+result.fileName+" )");
 		}
 	}
 }
@@ -213,9 +209,9 @@ void ofApp::onSaveAs(ofxInterface::TouchEvent &event)
 {
 	ofFileDialogResult result = ofSystemSaveDialog("Save to file...", "Save text to file");
 	if (result.bSuccess) {
-//		editor.saveToFile(result.filePath);
+		editor.saveToFile(result.filePath);
 		lastFile = result.filePath;
-//		editor.setTitle("Cling OF Playground ( "+result.fileName+" )");
+		editor.setTitle("View Creator ( "+result.fileName+" )");
 	}
 }
 

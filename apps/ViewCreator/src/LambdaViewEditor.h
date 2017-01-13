@@ -20,8 +20,9 @@ public:
 	LambdaViewEditor(const string& compName);
 	string getFunctionCode(const string& func);
 	string getCode();
-	
-	void draw();
+
+	void update(float dt) override;
+	void draw() override;
 
 	ofEvent<LambdaViewEditor> eventCompile;
 
@@ -29,9 +30,12 @@ private:
 	LambdaView* view;
 	map<string, ofxInterfaceTextEditor*> editors;
 	BitmapTextButton updateButton;
+	float updateTimer;
+	bool autoUpdate;
 
 	void onUpdateClicked(TouchEvent& event);
 	Json::Value getEditorConfig();
+	void onTouchMove(TouchEvent& event);
 };
 
 #endif /* LambdaViewEditor_h */
