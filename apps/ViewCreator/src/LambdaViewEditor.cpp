@@ -8,8 +8,11 @@
 
 #include "LambdaViewEditor.h"
 
-LambdaViewEditor::LambdaViewEditor()
+LambdaViewEditor::LambdaViewEditor(const string& compName)
 {
+	setName(compName + "_editor");
+
+	// Create editors
 	Json::Value conf = getEditorConfig();
 	float x=6;
 	float y=6;
@@ -26,18 +29,39 @@ LambdaViewEditor::LambdaViewEditor()
 		addChild(editors[name]);
 		y += editors[name]->getHeight()+6;
 	}
+
+	// Create update button
 	updateButton.setup("    UPDATE    ");
 	updateButton.setPosition(x, y);
+	addChild(&updateButton);
 	ofAddListener(updateButton.eventTouchUp, this, &LambdaViewEditor::onUpdateClicked);
+
+	// Create the lambda view that we'll be changing
+	view = new ofxInterface::LambdaView();
+	view->setName(compName);
+	addChild(view);
+
 	setSize(2*x+editors.begin()->second->getWidth(), y+30);
 }
 
-string LambdaViewEditor::getCode(const string& func)
+string LambdaViewEditor::getFunctionCode(const string& func)
 {
 	if (editors.find(func) != editors.end()) {
 		return editors[func]->getText();
 	}
 	return "";
+}
+
+string LambdaViewEditor::getCode()
+{
+	stringstream code;
+	code << "((ofxInterface::LambdaView*)(" << view << "))->setUpdateFunction([](float dt){"<<getFunctionCode("update")<<"});\n";
+	code << "((ofxInterface::LambdaView*)(" << view << "))->setDrawFunction([](){"<<getFunctionCode("draw")<<"});\n";
+	code << "((ofxInterface::LambdaView*)(" << view << "))->setTouchDownFunction([](ofxInterface::TouchEvent& event){"<<getFunctionCode("touchDown")<<"});\n";
+	code << "((ofxInterface::LambdaView*)(" << view << "))->setTouchMoveFunction([](ofxInterface::TouchEvent& event){"<<getFunctionCode("touchMove")<<"});\n";
+	code << "((ofxInterface::LambdaView*)(" << view << "))->setTouchUpFunction([](ofxInterface::TouchEvent& event){"<<getFunctionCode("touchUp")<<"});\n";
+	ofLogNotice() << "Code = "<<code.str();
+	return code.str();
 }
 
 void LambdaViewEditor::draw()

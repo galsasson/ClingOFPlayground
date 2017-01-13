@@ -41,23 +41,18 @@ void ofApp::setup(){
 	cof.interp->AddIncludePath(ADDONS_PATH"/ofxJSON/libs/jsoncpp/include");
 
 	cof.interp->DumpIncludePath();
+	cof.interp->process("#include \"workspace/clingof.hpp\"");
+	cof.interp->process("using namespace ofxInterface;");
 
 	// create lambda editor
-	lambdaEditor.setPosition(4, 4);
+	lambdaEditor = new LambdaViewEditor("first");
+	lambdaEditor->setPosition(4, 4);
+	ofAddListener(lambdaEditor->eventCompile, this, &ofApp::onUpdateView);
 
 	// create general code editor
 	editor.setTitle("Playground");
-	editor.setPosition(4, lambdaEditor.getY()+lambdaView.getHeight()+6);
+	editor.setPosition(ofGetWidth()-editor.getWidth()-4, ofGetHeight()-editor.getHeight()-4);
 	ofAddListener(editor.eventEnterDown, this, &ofApp::onEnterHit);
-
-	// default lambda editor
-	lambdaView.setSize(100, 100);
-	lambdaView.setDrawFunction([this]() {
-		ofSetColor(255, 0, 0);
-		ofFill();
-		ofDrawRectangle(0, 0, lambdaView.getWidth(), lambdaView.getHeight());
-	});
-	lambdaView.setPosition(lambdaEditor.getX() + lambdaEditor.getWidth() + 10, 10);
 
 	// create load/save buttons
 	newBtn.setup("  NEW  ");
@@ -86,14 +81,13 @@ void ofApp::setup(){
 	});
 
 	cof.scene.setSize(ofGetWidth(), ofGetHeight());
-	cof.scene.addChild(&lambdaEditor);
+	cof.scene.addChild(lambdaEditor);
 	cof.scene.addChild(&editor);
 	cof.scene.addChild(&newBtn);
 	cof.scene.addChild(&loadBtn);
 	cof.scene.addChild(&saveBtn);
 	cof.scene.addChild(&saveAsBtn);
 	cof.scene.addChild(&execToggle);
-	cof.scene.addChild(&lambdaView);
 	TouchManager::one().setup(&cof.scene);
 }
 
@@ -173,6 +167,15 @@ void ofApp::onEnterHit(ofxInterfaceTextEditor::EventArgs &args)
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------
+
+void ofApp::onUpdateView(LambdaViewEditor &edit)
+{
+//	string code = "((LambdaView*)(cof.scene.getChildWithName(\"custom_lambda_view\")))->setDrawFunction([]() { " +edit.getCode("draw")+ " });";
+//
+//	cof.interp->process(code);
+
+	cof.interp->process(edit.getCode());
+}
 
 void ofApp::onNew(ofxInterface::TouchEvent &event)
 {

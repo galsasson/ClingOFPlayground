@@ -17,14 +17,16 @@ using namespace ofxInterface;
 class LambdaViewEditor : public Node
 {
 public:
-	LambdaViewEditor();
-	string getCode(const string& func);
-
+	LambdaViewEditor(const string& compName);
+	string getFunctionCode(const string& func);
+	string getCode();
+	
 	void draw();
 
 	ofEvent<LambdaViewEditor> eventCompile;
 
 private:
+	LambdaView* view;
 	map<string, ofxInterfaceTextEditor*> editors;
 	BitmapTextButton updateButton;
 

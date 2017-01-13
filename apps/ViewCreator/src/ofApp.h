@@ -33,8 +33,7 @@ class ofApp: public ofBaseApp{
 	BitmapTextButton saveBtn;
 	BitmapTextButton saveAsBtn;
 	ofxInterfaceTextEditor editor;
-	LambdaViewEditor lambdaEditor;
-	LambdaView lambdaView;
+	LambdaViewEditor* lambdaEditor;
 	LambdaView execToggle;
 	bool terminalMode;
 
